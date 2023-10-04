@@ -1,7 +1,9 @@
 .footer {
     position: relative;
-    bottom: 0;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(207, 207, 236);
 }
 .footer-content {
     display: grid;
@@ -9,18 +11,16 @@
     height: 150px;
     gap: 4px;
     justify-content: center;
+    height: 30vh;
 }
 
 .footer-content div {
     position: relative;
-    aspect-ratio: 13rem;
     padding: 0.5rem;
     list-style: none;
-    line-height: 1.8;
-}
-
-.footer-content div strong {
-    text-align: center;
+    display: flex;  
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .bottom {
@@ -28,5 +28,5 @@
     justify-content: center;    
     background-color: rgb(174, 174, 214);
     gap: 2rem;
-    padding: 0.5rem;
+    padding: 0.3rem;
 }

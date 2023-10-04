@@ -1,7 +1,9 @@
 .main-page {    
+    flex: none;
     display: flex;
     flex-direction: column;
-    position: relative;
-    height: 100vh;
+    position: inherit;
+    height: 90vh;
     width: 100%;
+    scroll-snap-align: start;
 }
