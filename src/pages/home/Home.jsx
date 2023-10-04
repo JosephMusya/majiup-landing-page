@@ -8,7 +8,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     return (
-        <div className='home' style={{fontFamily:'sans-serif'}}>
+        <div className='home'>
             <div className='headline'>
                 <h1>
                     Monitoring the world's most precious resource and keeping your bills low

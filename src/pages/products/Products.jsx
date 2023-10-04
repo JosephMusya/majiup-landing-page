@@ -9,7 +9,7 @@ import { MdOutlineAutorenew }  from 'react-icons/md';
 const Products = () => {
     const iconSize = 60;
     return (
-        <div className='products' style={{fontFamily:'sans-serif'}}>
+        <div className='products'>
             <h1>Product Features</h1>
             {/* <button className='view-more'>See all Features <BsArrowRight /></button> */}
             <div className='products-content'>

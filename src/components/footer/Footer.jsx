@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Footer = () => {
     const navigate = useNavigate();
     return (
-        <div className='footer' style={{fontFamily:'sans-serif'}}>
+        <div className='footer'>
             <div className='footer-content'>
                 <div>
                     <strong style={{cursor:'pointer'}} onClick={()=>navigate('/')}>Majiup</strong>

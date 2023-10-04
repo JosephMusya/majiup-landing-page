@@ -9,7 +9,7 @@ function FAQs(){
     }
 
     return (
-        <div className='faq' style={{fontFamily:'sans-serif'}}>
+        <div className='faq'>
             <h1>Frequently Asked Questions</h1>
             <div>
                 <article>What do you deal with</article>

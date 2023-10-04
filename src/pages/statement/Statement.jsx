@@ -3,7 +3,7 @@ import './statement.css';
 
 const Statement = () => {
     return (
-        <div className='statement' style={{fontFamily:'sans-serif'}}>
+        <div className='statement'>
             <div>
                 <h1>Mission</h1>
                 <article>

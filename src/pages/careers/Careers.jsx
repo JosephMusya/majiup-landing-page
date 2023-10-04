@@ -4,7 +4,7 @@ import { GoDash } from 'react-icons/go';
 
 const Careers = () => {
     return (
-        <div className='careers' style={{fontFamily:'sans-serif'}}>
+        <div className='careers'>
             <h1> <GoDash /> We are Hiring</h1>
             <div className='open-positions'>
                 <div className='position'>

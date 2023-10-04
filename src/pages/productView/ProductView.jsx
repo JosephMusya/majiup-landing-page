@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductView = () => {
     return (
-        <div style={{fontFamily:'sans-serif'}}>
+        <div>
             <h1>Product View</h1>
         </div>
     );

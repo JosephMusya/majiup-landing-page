@@ -8,7 +8,7 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     return (
-        <nav className='nav' style={{fontFamily:'sans-serif'}}>
+        <nav className='nav'>
             <div className='icon'>
                 <article>Majiup</article>
             </div>
