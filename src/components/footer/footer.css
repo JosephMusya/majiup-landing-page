@@ -1,0 +1,32 @@
+.footer {
+    position: relative;
+    bottom: 0;
+    background-color: #fff;
+}
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 20%);    
+    height: 150px;
+    gap: 4px;
+    justify-content: center;
+}
+
+.footer-content div {
+    position: relative;
+    aspect-ratio: 13rem;
+    padding: 0.5rem;
+    list-style: none;
+    line-height: 1.8;
+}
+
+.footer-content div strong {
+    text-align: center;
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;    
+    background-color: rgb(174, 174, 214);
+    gap: 2rem;
+    padding: 0.5rem;
+}
