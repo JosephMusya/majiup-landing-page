@@ -10,7 +10,7 @@ const Navbar = () => {
     return (
         <nav className='nav'>
             <div className='icon'>
-                <article>Majiup</article>
+                <strong>Majiup</strong>
             </div>
             <div className='nav-content'>
                 <div className='nav-elements'>

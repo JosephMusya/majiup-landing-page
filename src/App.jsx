@@ -8,26 +8,31 @@ import { Routes, Route } from 'react-router-dom';
 import Careers from './pages/careers/Careers';
 import ProductView from './pages/productView/ProductView';
 import AllProductView from './pages/AllProductView/AllProductView';
+import Navbar from './components/navbar/Navbar';
+import './App.css';
 
 function App() {
   const MainContent = () => {
     return (
       <div className='items'>
         <Main/>
-        <Products />
-        <FAQs />
-        <Statement />
+        <div className='items-no-scroll'>
+          <Products />
+          <FAQs />
+          <Statement />
+        </div>
       </div>
     )
   }
   return (
     <>
+      <Navbar />
       <Routes>
         <Route exact path='/' element={<MainContent/>}/>
         <Route path='/product-feature' element={<ProductView/>} />
         <Route path='/products-view' element={<AllProductView/>} />
         <Route path='/careers' element={<Careers/>}/>
-      </Routes>  
+      </Routes>
       <Footer />
     </>    
   )
