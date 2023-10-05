@@ -34,28 +34,41 @@
     line-height: 1.5;
 }
 
+.products-content div article {
+    font-size: var(--small-text);
+}
+
 .products-content div strong {
-    font-size: var(--medium-text);
+    font-size: var(--normal-text);
+    font-weight: 400;
 }
 
 .products-content div button, .view-more {
-    font-size: 13.5px;
+    font-size: var(--xsmall-text);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
     padding: 0.5rem 0.8rem;
-    font-weight: bold;   
-    border: solid 1px; 
+    /* border: solid 1px var(--secondary-color);  */
+    border: solid 1px gray; 
+
     background-color: var(--background-color);
     border-radius: 4px;
     cursor: pointer;
-    color: var(--text-color);
-    font-weight: bold;
+
+    /* color: var(--secondary-color); */
+}
+
+.products-content div button:hover {
+    transition: 0.5s;
+    border: solid 1px var(--secondary-color);
+    color: var(--secondary-color);
 }
 
 .view-more {
     width: fit-content;
+
 }
 
 .view-more:hover {
