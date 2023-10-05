@@ -2,8 +2,9 @@
 * {
   --primary-color:#0072bb;
   --secondary-color:#f35e19;
-  --text-color: #333333;
+  --text-color: #4c516d;
   --text-dark:black;
+  /* --background-color:#e3e9f7; */
   --background-color:#fff;
   --xlarge-text:2.5rem;
   --large-text:1.6rem;

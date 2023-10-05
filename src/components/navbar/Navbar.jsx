@@ -1,35 +1,65 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import './navbar.css';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/logo/logo.png';
+import { LiaBarsSolid } from 'react-icons/lia';
+import { useEffect } from 'react';
+import { MdOutlineClose } from 'react-icons/md';
+
+// import { RiArrowDropDownLine } from 'react-icons/ri';
 
 const Navbar = () => {
 
+    const nav = useRef();
+
+    const [showNav, setShowNav] = useState(false);
+
     const navigate = useNavigate();
 
+    const toggleNav = () => {
+        setShowNav(!showNav);
+        console.log(showNav);
+    }
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (nav.current && !nav.current.contains(event.target)) {
+            // Clicked outside the div, hide it
+            setShowNav(false);
+          }
+        };
+    
+        // Add the event listener
+        document.addEventListener('mousedown', handleClickOutside);
+    
+        // Cleanup the event listener when the component unmounts
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+      }, []);
+
     return (
-        <nav className='nav'>
-            <div className='icon'>
-                <strong>Majiup</strong>
+        <nav>
+            <div className='bars'>
+                {
+                    showNav ? <MdOutlineClose onClick={toggleNav} size={23} style={{cursor:'pointer'}}/>:
+                    <LiaBarsSolid onClick={toggleNav} size={23} style={{cursor:'pointer'}}/>
+                }
             </div>
-            <div className='nav-content'>
+            <div  className={showNav?'nav show':'nav hidden'} ref={nav}>
+                <div className='icon'>
+                    <img src={logo} alt="logo" />
+                    <strong>ajiup</strong>
+                </div>
                 <div className='nav-elements'>
-                    <li onClick={()=>navigate('/')}>Home</li>
+                    <li onClick={()=>{navigate('/'), setShowNav(false)}}>Home</li>
                     <li>Products <RiArrowDropDownLine size={23} /></li>
                     <li>Resources  <RiArrowDropDownLine size={23} /></li>
-                    <li className='contacts'>Contacts <RiArrowDropDownLine size={23} />
-                        <div className='contact-list'>
-                            <li>Email</li>
-                            <li>Phone</li>
-                            <li>Twitter</li>
-                        </div>
+                    <li className='contacts'>Contacts <RiArrowDropDownLine size={23} />                        
                     </li>  
-                    <li onClick={()=>navigate('/careers')}>Careers</li>
-                </div>    
-                <div className='call-actions'>
-                    <button>Login</button>
-                    <button>Sign Up</button>
-                </div>          
+                    <li onClick={()=>{navigate('/careers'), setShowNav(false)}}>Careers</li>
+                </div>                        
             </div>            
         </nav>
     );

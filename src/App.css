@@ -3,10 +3,6 @@
     scroll-behavior: smooth;
     overflow: auto;
     display: flex;
+    gap: 3rem;
     flex-direction: column;
-    scrollbar-width: none;   
-}
-
-.items-no-scroll {
-    scroll-snap-align: center;
 }

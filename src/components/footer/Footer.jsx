@@ -1,15 +1,16 @@
 import React from 'react';
 import './footer.css';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/logo/logo.png';
 
 const Footer = () => {
     const navigate = useNavigate();
     return (
         <div className='footer'>
             <div className='footer-content'>
-                <div>
+                {/* <div>
                     <strong style={{cursor:'pointer'}} onClick={()=>navigate('/')}>Majiup</strong>
-                </div>
+                </div> */}
                 <div>
                     <strong>Products</strong>
                     <li>Water level monitor (single)</li>
@@ -30,9 +31,10 @@ const Footer = () => {
                 </div>
             </div>
             <div className='bottom'>
+                <img src={logo} alt="logo" />
                 <article>Privacy Policy</article>
-                <article>Terms & Conditions</article>
-                <article>Follow Us</article>
+                <article>Terms of Service</article>
+                <article>&copy; Majiup 2023</article>
             </div>
         </div>
     );

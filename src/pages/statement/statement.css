@@ -6,7 +6,6 @@
     flex-direction: column;
     text-align: center;
     position: relative;
-    height: 100vh;
     scroll-snap-align: start;
     scroll-behavior: smooth;
     gap: 2rem;
@@ -15,4 +14,29 @@
 .statement div {
     position: relative;
     width: 70%;
+}
+
+
+/* Medium Size */
+@media screen and ( max-width: 992px) {
+    .statement div {
+        position: relative;
+        width: 80%;
+    }
+}
+
+/* Tablet Size */
+@media screen and ( max-width: 768px) {
+    .statement div {
+        position: relative;
+        width: 90%;
+    }
+}
+
+/* Small Size */
+@media screen and ( max-width: 576px) {
+    .statement div {
+        position: relative;
+        width: 100%;
+    }
 }

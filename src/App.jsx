@@ -16,23 +16,19 @@ function App() {
     return (
       <div className='items'>
         <Main/>
-        <div className='items-no-scroll'>
-          <Products />
-          <FAQs />
-          <Statement />
-        </div>
+        <Products />
+        <FAQs />
+        <Statement />
       </div>
     )
   }
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route exact path='/' element={<MainContent/>}/>
-        <Route path='/product-feature' element={<ProductView/>} />
-        <Route path='/products-view' element={<AllProductView/>} />
-        <Route path='/careers' element={<Careers/>}/>
-      </Routes>
+      <Navbar /> 
+      <Main/>
+      <Products />
+      <FAQs />
+      <Statement />           
       <Footer />
     </>    
   )
