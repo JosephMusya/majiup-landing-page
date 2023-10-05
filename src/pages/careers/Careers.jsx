@@ -41,7 +41,7 @@ const Careers = () => {
             <div style={{padding:'2rem', display:'flex', gap:'1rem', alignItems:'center', backgroundColor:''}}>
                 <AiOutlineInfoCircle size={30}/> 
                 <article>
-                    Submit application to <span style={{color:'blue', cursor:'pointer'}}>&nbsp; careers@majiup</span>
+                    Submit application to <span style={{color:'#0072bb', cursor:'pointer'}}>careers@majiup</span>
                 </article>                
             </div>
         </div>

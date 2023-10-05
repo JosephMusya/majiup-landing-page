@@ -15,7 +15,7 @@ const Products = () => {
             <div className='products-content'>
                 <div>
                     <strong>Monitoring Water Levels</strong>
-                    <GiWaterTower size={iconSize}/>
+                    <GiWaterTower color='#0072bb' size={iconSize}/>
                     <article className='desc'>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque a fuga exercitationem reprehenderit eius aliquid.
                     </article>
@@ -26,7 +26,7 @@ const Products = () => {
                 </div>
                 <div>
                     <strong>Monitoring water quality</strong>
-                    <FaHandHoldingWater size={iconSize} />
+                    <FaHandHoldingWater color='#0072bb' size={iconSize} />
                     <article>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque a fuga exercitationem reprehenderit eius aliquid.
                     </article>
@@ -37,7 +37,7 @@ const Products = () => {
                 </div>
                 <div>
                     <strong>Water History Usage</strong>
-                    <AiOutlineBarChart size={iconSize}/>
+                    <AiOutlineBarChart color='#0072bb' size={iconSize}/>
                     <article>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque a fuga exercitationem reprehenderit eius aliquid.
                     </article>
@@ -48,7 +48,7 @@ const Products = () => {
                 </div>
                 <div>
                     <strong>Automatic pump control</strong>
-                    <MdOutlineAutorenew size={iconSize}/>
+                    <MdOutlineAutorenew color='#0072bb' size={iconSize}/>
                     <article>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque a fuga exercitationem reprehenderit eius aliquid.
                     </article>
@@ -59,7 +59,7 @@ const Products = () => {
                 </div>
                 <div>
                     <strong>Copilot Assistant</strong>
-                    <FaHandsHelping size={iconSize}/>
+                    <FaHandsHelping color='#0072bb' size={iconSize}/>
                     <article>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque a fuga exercitationem reprehenderit eius aliquid.
                     </article>
@@ -70,7 +70,7 @@ const Products = () => {
                 </div>
                 <div>
                     <strong>Overflow protection</strong>
-                    <GiWaterTank  size={iconSize}/>
+                    <GiWaterTank color='#0072bb'size={iconSize}/>
                     <article>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque a fuga exercitationem reprehenderit eius aliquid.
                     </article>

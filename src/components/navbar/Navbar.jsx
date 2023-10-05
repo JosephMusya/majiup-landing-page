@@ -14,10 +14,16 @@ const Navbar = () => {
             </div>
             <div className='nav-content'>
                 <div className='nav-elements'>
+                    <li onClick={()=>navigate('/')}>Home</li>
                     <li>Products <RiArrowDropDownLine size={23} /></li>
-                    <li>Use cases</li>
                     <li>Resources  <RiArrowDropDownLine size={23} /></li>
-                    <li>Contacts <RiArrowDropDownLine size={23} /></li>  
+                    <li className='contacts'>Contacts <RiArrowDropDownLine size={23} />
+                        <div className='contact-list'>
+                            <li>Email</li>
+                            <li>Phone</li>
+                            <li>Twitter</li>
+                        </div>
+                    </li>  
                     <li onClick={()=>navigate('/careers')}>Careers</li>
                 </div>    
                 <div className='call-actions'>
