@@ -1,0 +1,37 @@
+.chat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.chat div {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+}
+.subject, .message {
+    display: flex;
+    flex-direction: row !important;
+    gap: 4px;
+    place-items: center;
+}
+
+.subject label, .message label {
+    width: 6rem;
+}
+
+#message, #subject {
+    width: fit-content;
+    outline: none;
+}
+
+#subject {
+    border-radius: 2rem;
+    background-color: #fff;
+}
+
+#message {
+    border: none;
+    border-bottom: solid 1px gray;
+}

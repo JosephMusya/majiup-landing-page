@@ -1,0 +1,58 @@
+.subscribe {
+    position: relative;
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    place-items: center;
+    gap: 2rem;
+}
+
+.subscribe div:nth-child(1){
+    position: relative;
+    width: fit-content;
+}
+.subscribe h1 {
+    line-height: 1.3;
+    font-weight: bold;            
+}
+
+.details{
+    display: flex;
+    place-items: center;
+    gap: 1rem;
+}
+
+.details input {
+    border: none;
+    outline: none;
+    border-bottom: solid 1px;
+    color: gray;
+    width: fit-content;
+}
+
+.details button {
+    cursor: pointer;
+    border: none;
+    background-color: red;
+    color: #fff;
+    border-radius: 4px;
+    padding: 0.5rem 0.8rem;
+}
+
+/* Medium Size */
+@media screen and ( max-width: 992px) {
+
+}
+
+/* Tablet Size */
+@media screen and ( max-width: 768px) {
+
+}
+
+/* Small Size */
+@media screen and ( max-width: 576px) {
+    .subscribe {
+        flex-direction: column;
+        place-items: start;
+    }
+}
