@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     position: relative;
-    font-size: var(--large-text);
     width: 20%;
     align-items: center;
 }

@@ -2,15 +2,16 @@
 * {
   --primary-color:#0072bb;
   --secondary-color:#f35e19;
-  --text-color: #4c516d;
+  /* --text-color: #4c516d; */
+  --text-color:rgb(51, 51, 51);
   --text-dark:black;
   /* --background-color:#e3e9f7; */
   --background-color:#fff;
   --xlarge-text:2.5rem;
-  --large-text:1.6rem;
-  --medium-text:1.1rem;
-  --normal-text:1rem;
-  --small-text:0.9rem;
+  --large-text:18px;
+  --medium-text:14px;
+  --normal-text:13px;
+  --small-text:12px;
   --xsmall-text:0.8rem;
   --standard-dimension:0.5rem;
   --font-weight-bold:500;
@@ -24,6 +25,8 @@
   padding: 0;
   margin: 0;
   background-color: var(--background-color);
+  color: var(--text-color);
+
 }
 
 h1, h2, h3 {
@@ -40,9 +43,7 @@ h2,h3 {
 
 body {
   margin: 0;
-  color: var(--text-color);
 }
-
 
 ::-webkit-scrollbar {
   width: 5px;
@@ -57,4 +58,19 @@ body {
 /* For track or the area behind the thumb */
 ::-webkit-scrollbar-track {
   background-color: #f1f1f1; /* Color of the scrollbar track */
+}
+
+/* Medium Size */
+@media screen and ( max-width: 992px) {
+  
+}
+
+/* Tablet Size */
+@media screen and ( max-width: 768px) {
+
+}
+
+/* Small Size */
+@media screen and ( max-width: 576px) {
+  
 }

@@ -1,0 +1,29 @@
+.testimonials {
+    position: relative;
+    display: flex;
+    justify-content: center;     
+     
+}
+
+.testimonials-box {
+    display: flex;
+    flex-direction: column;
+    width: 70%;  
+    text-align: center;    
+}
+
+.testimonials-box h1 {
+    display: flex;
+    width: 100%;
+    place-items: center;
+    justify-content: center;
+    /* place-items: center; */
+}
+
+.testimonials-content {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    background-color: aliceblue;
+    padding: 2rem;
+}

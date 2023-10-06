@@ -1,0 +1,47 @@
+.news-disp {
+    display: flex;
+    background-color: #f7f7f7;
+    margin-top: 1rem;    
+    place-items: center;
+}
+
+.news-top {
+    position: relative;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.news-top h1 {
+    font-weight: bold;
+    position: inherit;
+    width: 60%;
+    line-height: 1.3;    
+}
+
+.news-top article {
+    width: 80%;
+}
+
+.news-bottom {
+    position: relative;
+    width: 50%;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+}
+
+.news-content {
+    width: 350px;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-content img {
+    width: inherit;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 1rem;
+}
