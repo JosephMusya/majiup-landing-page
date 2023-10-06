@@ -45,3 +45,33 @@
     object-fit: cover;
     border-radius: 1rem;
 }
+
+/* Medium Size */
+@media screen and ( max-width: 992px) {
+   
+}
+
+/* Tablet Size */
+@media screen and ( max-width: 768px) {
+     
+}
+
+/* Small Size */
+@media screen and ( max-width: 576px) {
+    .news-disp {
+        flex-direction: column;
+    }   
+
+    .news-top {
+        width: 100%;
+    }
+
+
+    .news-bottom {
+        width: 100%;      
+    }
+
+    .news-content {
+        width: 100%;        
+    }
+}

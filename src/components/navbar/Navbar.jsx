@@ -19,7 +19,6 @@ const Navbar = () => {
 
     const toggleNav = () => {
         setShowNav(!showNav);
-        console.log(showNav);
     }
 
     useEffect(() => {

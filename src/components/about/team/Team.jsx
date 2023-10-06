@@ -1,16 +1,19 @@
 import React from 'react';
 import { BsBoxArrowUpRight, BsArrowRight } from 'react-icons/bs';
 import './team.css';
+import { useNavigate } from 'react-router-dom';
+import { GoDash } from 'react-icons/go';
 
 const Team = () => {
+    const navigate = useNavigate();
     return (
         <div className='team'>
             <div className='team-top'>
-                <strong>Meet our team</strong>
+                <strong><GoDash />Meet our team<GoDash /></strong>
                 <h1>
                     Our team consists of global innovators and developers!
                 </h1>
-                <article>Join our team <BsArrowRight size={20}/></article>
+                <article onClick={()=>{navigate('/careers')}}>Join our team <BsArrowRight size={20}/></article>
             </div>
             <div className='team-bottom'>
                 <div className='team-content'>

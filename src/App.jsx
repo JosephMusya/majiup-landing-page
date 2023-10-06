@@ -14,29 +14,31 @@ import Statement from './components/about/statement/Statement';
 import Team from './components/about/team/Team';
 import Testimonials from './components/about/testimonials/Testimonials';
 import News from './components/about/news/News';
+import Subscribe from './components/subscribe/Subscribe';
+import Chat from './components/chat/Chat';
 
 function App() {
   const MainContent = () => {
     return (
       <div className='items'>
         <Main/>
-        <Products />        
-        <FAQs />
         <Statement />
+        <Products />
+        <Team />
+        <Testimonials />
+        <News />
+        <Subscribe />
+        <Chat />
       </div>
     )
   }
   return (
     <>
       <Navbar /> 
-      <Main/>
-      <Statement />
-      <Products />
-      <Team />
-      {/* <FAQs /> */}
-      <Testimonials />
-      <News />
-      {/* <Statement />            */}
+      <Routes>
+        <Route exact path='/' element={<MainContent/>} />
+        <Route path='/careers' element={<Careers/>}/>
+      </Routes>
       <br />
       <Footer />
     </>    

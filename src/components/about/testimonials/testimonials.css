@@ -27,3 +27,20 @@
     background-color: aliceblue;
     padding: 2rem;
 }
+
+/* Medium Size */
+@media screen and ( max-width: 992px) {
+     
+}
+
+/* Tablet Size */
+@media screen and ( max-width: 768px) {
+      
+}
+
+/* Small Size */
+@media screen and ( max-width: 576px) {
+    .testimonials-box {    
+        width: 90%;  
+    }
+}
