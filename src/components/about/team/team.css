@@ -87,7 +87,9 @@
 
 /* Tablet Size */
 @media screen and ( max-width: 768px) {
- 
+    .team {
+        padding: 0 0.7rem;
+    }
 }
 
 /* Small Size */

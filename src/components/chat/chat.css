@@ -29,9 +29,25 @@
 #subject {
     border-radius: 2rem;
     background-color: #fff;
+    padding: 0.3rem 0.5rem;
 }
 
 #message {
     border: none;
     border-bottom: solid 1px gray;
+}
+
+/* Medium Size */
+@media screen and ( max-width: 992px) {
+
+}
+
+/* Tablet Size */
+@media screen and ( max-width: 768px) {
+
+}
+
+/* Small Size */
+@media screen and ( max-width: 576px) {
+
 }

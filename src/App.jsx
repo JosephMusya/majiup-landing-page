@@ -16,12 +16,16 @@ import Testimonials from './components/about/testimonials/Testimonials';
 import News from './components/about/news/News';
 import Subscribe from './components/subscribe/Subscribe';
 import Chat from './components/chat/Chat';
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom'
 
 function App() {
   const MainContent = () => {
     return (
       <div className='items'>
-        <Main/>
+        <Zoom duration={1800}>
+          <Main/>
+        </Zoom>
         <Statement />
         <Products />
         <Team />

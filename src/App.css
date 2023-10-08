@@ -1,5 +1,5 @@
 .items {
-    /* padding: 0 2rem; */
+    padding: 0 2rem;
 }
 
 /* Medium Size */
@@ -11,14 +11,14 @@
 
 /* Tablet Size */
 @media screen and ( max-width: 768px) {
-    /* .items {
-        padding: 0 0.5rem;
-    }     */
+    .items {
+        padding: 0 0.6rem;
+    }    
 }
 
 /* Small Size */
 @media screen and ( max-width: 576px) {
-    .items div{
-        /* padding: 0 9px; */
+    .items {
+        padding: 0 0.5rem;
     }    
 }

@@ -3,6 +3,7 @@
     background-color: #f7f7f7;
     margin-top: 1rem;    
     place-items: center;
+    padding: 0 1rem;
 }
 
 .news-top {
@@ -53,13 +54,16 @@
 
 /* Tablet Size */
 @media screen and ( max-width: 768px) {
-     
+    .news-disp {
+        padding: 0 0.7rem;
+    } 
 }
 
 /* Small Size */
 @media screen and ( max-width: 576px) {
     .news-disp {
         flex-direction: column;
+        padding: 0 0.5rem;
     }   
 
     .news-top {

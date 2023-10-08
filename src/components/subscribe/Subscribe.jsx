@@ -1,12 +1,15 @@
 import React from 'react';
 import './subscribe.css';
 import { MdOutlineEmail } from 'react-icons/md';
+import Bounce from 'react-reveal/Bounce';
 
 const Subscribe = () => {
     return (
         <div className='subscribe'>
             <div>
-                <h1>Interested about us?</h1>
+                <Bounce>
+                    <h1>Interested about us?</h1>
+                </Bounce>
                 <article>Subscribe to our monthly newsletter releases</article>
             </div>
             <div className='details'>

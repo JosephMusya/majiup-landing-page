@@ -5,6 +5,7 @@
     display: flex;
     place-items: center;
     gap: 2rem;
+    /* padding: 0 1rem; */
 }
 
 .subscribe div:nth-child(1){
@@ -54,5 +55,7 @@
     .subscribe {
         flex-direction: column;
         place-items: start;
+        /* padding: 0 0.5rem; */
+        /* overflow-y: hidden; */
     }
 }
