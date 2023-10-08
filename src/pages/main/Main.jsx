@@ -9,12 +9,12 @@ const Main = () => {
         <div className='home'>
             <div className='headline'>
                 <h1>
-                    Monitoring the world's most precious resource and keeping your bills low
+                    Elevating Water Management, One Tank at a Time
                 </h1>
             </div>
             <div className='description'>
                 <article>
-                    Welcome to our company, where we are dedicated to transforming the way we manage water through innovative IoT solutions. Our team of experts specializes in monitoring water levels, quality, leakage detection, pump Control and usage history to provide comprehensive data analysis for our clients.
+                    Ready to make a difference in how you manage your water resources? Reach out to us today to discover Majiup's IoT solutions.
                 </article>
             </div>
             <div className='call-action'>

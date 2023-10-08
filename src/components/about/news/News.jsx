@@ -32,7 +32,7 @@ const News = () => {
                 <div className='news-top'> 
                     <h1>Stay updated on our latest news</h1>
                     <article>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit laboriosam omnte recusandae ut cupiditate.
+                        Check our news blog on how Majiup is transforming lives in Africa and beyond.
                     </article>
                 </div>
             </Slide>

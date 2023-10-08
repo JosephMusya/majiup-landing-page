@@ -35,7 +35,7 @@ const Statement = () => {
                     </div>
                     <div className='statement-content'>
                         <article>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit laboriosam omnte recusandae ut cupiditate.
+                            Majiup uses IoT tech and data solutions to bring clean, reliable water to African communities, improving lives.                                    
                         </article>
                     </div>     
                 </div>
@@ -46,7 +46,6 @@ const Statement = () => {
                         <h1>Driving innovation to combat water challenges!</h1>
                         <div>
                             <article>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. error tenetur voluptatibus quia enim repudiandae atqu.
                             </article>
                         </div>
                         <button>Get your Device <BsArrowRight /></button>

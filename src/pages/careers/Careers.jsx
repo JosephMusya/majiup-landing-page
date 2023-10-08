@@ -8,7 +8,10 @@ import Flash from 'react-reveal/Flash';
 const Careers = () => {
     return (
         <div className='careers'>
-            <h1> <GoDash /> We are Hiring</h1>            
+            <h1> <GoDash /> We are Hiring</h1>
+            <article>
+                Are you passionate about water management innovation and making a positive impact on communities?                               
+            </article>            
             <div className='open-positions'>
                 <Zoom>
                     <div className='position'>

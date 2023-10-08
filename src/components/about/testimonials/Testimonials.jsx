@@ -15,12 +15,14 @@ const Testimonials = () => {
                     <div className='testimonials-content'>
                         <article>
                             <BsQuote size={40}/>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo ipsam quasi harum vel. Reiciendis ipsa in omnis eos, soluta est explicabo rerum maxime quasi quam earum accusantium provident, mollitia animi incidunt ab voluptates repellat illo.
+                            Majiup's IoT devices transformed our water management. Tanks are always full, issues are detected early, and our community now enjoys clean water. Thank you, Majiup!
                         </article>  
                         <br />
                         <strong style={{fontSize:'10px'}}>
                             {/* <HiOutlineCursorArrowRays /> */}
-                            Warrel Tank Manufactures
+                            <span>Sarah K, </span>
+                            <span>Community Leader - </span>
+                            <span>Nairobi Kenya</span>
                         </strong>
                     </div>              
                 </div>
