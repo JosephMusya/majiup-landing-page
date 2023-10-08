@@ -1,0 +1,51 @@
+.slider {   
+    position: relative;  
+    width: inherit;
+    border-radius: 1rem;    
+    aspect-ratio: 1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: 1s;
+}
+
+.slider .role {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 2rem;
+    padding: 0.3rem 0.6rem;
+}
+
+.slider .name {
+    position: absolute;
+    bottom: -8%;
+    left: 0;
+    display: flex;
+    place-items: center;
+    gap: 8px;
+    cursor: pointer;
+    width: fit-content;       
+}
+
+.slider .name:hover {
+    color: var(--primary-color);
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    background-color: white;
+    display: flex;
+    border-radius: 100%;
+}
+
+.next {
+    right: 1%;
+}
+
+.prev {
+    left: 1%;
+}
