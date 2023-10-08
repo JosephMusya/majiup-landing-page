@@ -23,7 +23,7 @@
     position: relative;
     width: 100%;
     place-items: center;
-    border-bottom: solid 1px gray;
+    /* border-bottom: solid 1px gray; */
 }
 
 .nav-elements {
