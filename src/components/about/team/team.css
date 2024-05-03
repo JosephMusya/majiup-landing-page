@@ -1,57 +1,58 @@
 .team {
-    display: flex;
-    align-items: center;
-    /* place-items: center;     */
+  display: flex;
+  align-items: center;
+  margin-bottom: 5rem;
+  /* place-items: center;     */
 }
 
 .team-top {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    line-height: 1.3;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  line-height: 1.3;
 }
 
 .team-top strong {
-    display: flex;
-    /* place-items: center; */
+  display: flex;
+  /* place-items: center; */
 }
 
 .team-top h1 {
-    position: relative;
-    width: 80%; 
-    font-weight: bold;   
+  position: relative;
+  width: 80%;
+  font-weight: bold;
 }
 
 .team-top article {
-    width: fit-content;
-    cursor: pointer;
-    display: flex;
-    gap: 8px;
-    place-items: center;
-    border: solid 1px gray;
-    border-radius: 2rem;
-    padding: 0.5rem 0.8rem;
+  width: fit-content;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  place-items: center;
+  border: solid 1px gray;
+  border-radius: 2rem;
+  padding: 0.5rem 0.8rem;
 }
 
 .team-top article:hover {
-    color: var(--primary-color);
-    border: solid 1px var(--primary-color);
+  color: var(--primary-color);
+  border: solid 1px var(--primary-color);
 }
 
-.team-bottom { 
-    position: relative;
-    width: 50%;
-    display: flex;
-    place-items: center;
-    justify-content: center;
-    padding: 1rem 0 2rem 0; 
+.team-bottom {
+  position: relative;
+  width: 50%;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  padding: 1rem 0 2rem 0;
 }
 
 .team-content {
-    position: relative;
-    width: 300px;
-    aspect-ratio: 1;
+  position: relative;
+  width: 300px;
+  aspect-ratio: 1;
 }
 
 /* .slider-parent {
@@ -60,25 +61,25 @@
 } */
 
 /* Medium Size */
-@media screen and ( max-width: 992px) {
-
+@media screen and (max-width: 992px) {
 }
 
 /* Tablet Size */
-@media screen and ( max-width: 768px) {   
+@media screen and (max-width: 768px) {
 }
 
 /* Small Size */
-@media screen and ( max-width: 576px) {
-    .team {
-        flex-direction: column;
-    }
+@media screen and (max-width: 576px) {
+  .team {
+    flex-direction: column;
+  }
 
-    .team-top, .team-bottom {
-        width: 100%;  
-    }       
+  .team-top,
+  .team-bottom {
+    width: 100%;
+  }
 
-    .team-content {
-        width: 100%;               
-    }
+  .team-content {
+    width: 100%;
+  }
 }

@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 * {
-  --primary-color:#0072bb;
-  --secondary-color:#f35e19;
+  --primary-color: #0072bb;
+  --secondary-color: #f35e19;
   /* --text-color: #4c516d; */
-  --text-color:rgb(51, 51, 51);
-  --text-dark:black;
+  --text-color: rgb(51, 51, 51);
+  --text-dark: black;
   /* --background-color:#e3e9f7; */
-  --background-color:#fff;
-  --xlarge-text:2.5rem;
-  --large-text:18px;
-  --medium-text:14px;
-  --normal-text:13px;
-  --small-text:12px;
-  --xsmall-text:0.8rem;
-  --standard-dimension:0.5rem;
-  --font-weight-bold:500;
-  --font-weight-normal:400;
+  --background-color: #fff;
+  --xlarge-text: 2.5rem;
+  --large-text: 20px;
+  --medium-text: 16px;
+  --normal-text: 14px;
+  --small-text: 12px;
+  --xsmall-text: 0.8rem;
+  --standard-dimension: 0.5rem;
+  --font-weight-bold: 500;
+  --font-weight-normal: 400;
 }
 
 :root {
@@ -26,10 +26,11 @@
   margin: 0;
   background-color: var(--background-color);
   color: var(--text-color);
-
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin: 0;
 }
 
@@ -37,7 +38,8 @@ h1 {
   font-weight: 400;
 }
 
-h2,h3 {
+h2,
+h3 {
   font-weight: 300;
 }
 
@@ -61,16 +63,13 @@ body {
 }
 
 /* Medium Size */
-@media screen and ( max-width: 992px) {
-  
+@media screen and (max-width: 992px) {
 }
 
 /* Tablet Size */
-@media screen and ( max-width: 768px) {
-
+@media screen and (max-width: 768px) {
 }
 
 /* Small Size */
-@media screen and ( max-width: 576px) {
-  
+@media screen and (max-width: 576px) {
 }
