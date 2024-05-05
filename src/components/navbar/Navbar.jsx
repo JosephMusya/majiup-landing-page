@@ -71,7 +71,7 @@ const Navbar = () => {
             Products <RiArrowDropDownLine size={23} />
           </li>
           <li>
-            Resources <RiArrowDropDownLine size={23} />
+            Resources & Docs <RiArrowDropDownLine size={23} />
           </li>
           <li className="contacts">
             Contacts <RiArrowDropDownLine size={23} />

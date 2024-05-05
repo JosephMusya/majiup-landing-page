@@ -14,7 +14,9 @@ export default function Process() {
           <div className="step">
             <ImMobile2 size={iconSize} />
           </div>
-          <h2>Request for a water refill</h2>
+          <div>
+            <h2>Request for a water refill</h2>
+          </div>
         </div>
         <div>
           <div className="step">

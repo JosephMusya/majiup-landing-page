@@ -21,11 +21,14 @@ import Zoom from "react-reveal/Zoom";
 import Mission from "./components/mission/Mission";
 import Process from "./components/process/Process";
 import FAQ from "./components/faq/FAQ";
+import VendorRegistration from "./pages/register/VendorRegistration";
+import Request from "./pages/request/Request";
+
 function App() {
   const MainContent = () => {
     return (
       <div className="items">
-        <Zoom duration={1800}>
+        <Zoom duration={1000}>
           <Main />
         </Zoom>
         <Process />
@@ -47,6 +50,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<MainContent />} />
         <Route path="/careers" element={<Careers />} />
+        <Route path="/vendor-registration" element={<VendorRegistration />} />
+        <Route path="/request-refill" element={<Request />} />
       </Routes>
       <br />
       <Footer />

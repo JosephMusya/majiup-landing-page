@@ -75,6 +75,10 @@
   color: #fff !important;
 }
 
+.register-v {
+  color: var(--text-color);
+}
+
 /* Medium Size */
 @media screen and (max-width: 992px) {
   .headline,
