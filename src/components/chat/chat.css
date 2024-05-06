@@ -1,53 +1,63 @@
 .chat {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .chat div {
-    display: flex;
-    gap: 0.5rem;
-    flex-direction: column;
-}
-.subject, .message {
-    display: flex;
-    flex-direction: row !important;
-    gap: 4px;
-    place-items: center;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
 }
 
-.subject label, .message label {
-    width: 6rem;
+.subject {
+  border: none;
 }
 
-#message, #subject {
-    width: fit-content;
-    outline: none;
+.subject,
+.message {
+  display: flex;
+  flex-direction: row !important;
+  gap: 4px;
+  place-items: center;
+}
+
+.subject label,
+.message label {
+  width: 6rem;
+}
+
+#message,
+#subject {
+  width: fit-content;
+  outline: none;
 }
 
 #subject {
-    border-radius: 2rem;
-    background-color: #fff;
-    padding: 0.3rem 0.5rem;
+  border-radius: 2rem;
+  background-color: #fff;
+  padding: 0.5rem 0.7rem;
+  width: 20rem;
 }
 
 #message {
-    border: none;
-    border-bottom: solid 1px gray;
+  border: none;
+  border-bottom: solid 1px gray;
+  width: 100%;
+  max-width: 600px;
+  padding: 4px;
+  font-size: large;
 }
 
 /* Medium Size */
-@media screen and ( max-width: 992px) {
-
+@media screen and (max-width: 992px) {
 }
 
 /* Tablet Size */
-@media screen and ( max-width: 768px) {
-
+@media screen and (max-width: 768px) {
 }
 
 /* Small Size */
-@media screen and ( max-width: 576px) {
-
+@media screen and (max-width: 576px) {
 }

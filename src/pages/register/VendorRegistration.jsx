@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function VendorRegistration() {
   const navigate = useNavigate();
+  const [errors, setErrors] = useState([]);
   const [laoding, setLoading] = useState(false);
   const submitVendorDetails = async (e) => {
     try {
@@ -38,12 +39,14 @@ export default function VendorRegistration() {
         .select();
 
       if (data) {
+        setErrors([]);
         navigate("/");
         alert(
           "We added you on our platform. We will contact you for verification.\nThank you for using Majiup!"
         );
       } else if (error) {
         console.log(error);
+        setErrors(error);
         throw new Error("Failed to add vendor");
       }
     } catch (err) {
@@ -58,6 +61,12 @@ export default function VendorRegistration() {
     <div className="add-vendor">
       <h1>Register with us</h1>
       <div>
+        {errors.details && (
+          <div>
+            <h2>Error Occured</h2>
+            <li style={{ color: "red" }}>{errors.details}</li>
+          </div>
+        )}
         <form onSubmit={submitVendorDetails}>
           <div className="add-vendor-form">
             <div>

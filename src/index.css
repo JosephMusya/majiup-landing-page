@@ -10,12 +10,13 @@
   --xlarge-text: 2.5rem;
   --large-text: 20px;
   --medium-text: 16px;
-  --normal-text: 14px;
-  --small-text: 12px;
+  --normal-text: 16px;
+  --small-text: 14px;
   --xsmall-text: 0.8rem;
   --standard-dimension: 0.5rem;
   --font-weight-bold: 500;
   --font-weight-normal: 400;
+  box-sizing: border-box;
 }
 
 :root {

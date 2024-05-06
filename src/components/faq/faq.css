@@ -5,22 +5,40 @@
   flex-direction: column;
   margin-bottom: 5rem;
   gap: 2rem;
+  position: relative;
+  width: 100%;
+}
+
+.faq-box h1 {
+  font-weight: bold;
 }
 .faqs {
+  position: relative;
   max-width: 1200px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
   row-gap: 1rem;
   column-gap: 4rem;
 }
 
 .q {
   padding: 1rem;
-  border: solid 2px aliceblue;
+  border: solid 2px #f0f8ff;
   border-radius: 8px;
   cursor: pointer;
+  /* max-width: 500px !important; */
 }
 
 .q article {
   font-weight: 600;
+}
+
+@media screen and (max-width: 1000px) {
+  .faqs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .q {
+    width: 100%;
+  }
 }

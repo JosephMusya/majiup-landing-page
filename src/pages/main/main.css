@@ -53,13 +53,13 @@
   /* color: var(--secondary-color); */
   background-color: #fff;
   cursor: pointer;
-  transition: 0.8s color border ease-in-out;
+  transition: 0.3s scaleX ease-in-out;
   text-decoration: none;
   /* color: gray; */
 }
 
 .home .call-action a:hover {
-  transition: 0.8s;
+  transition: 0.3s;
   border: solid 1px var(--primary-color);
   color: var(--primary-color);
   transform: scaleX(1.05);

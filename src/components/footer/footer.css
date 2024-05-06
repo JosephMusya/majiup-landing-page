@@ -3,7 +3,7 @@
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  background-color: rgb(68, 68, 99);
+  background-color: var(--primary-color);
   color: #fff;
   font-size: var(--xsmall-text);
 }
@@ -31,7 +31,7 @@
 .bottom {
   display: flex;
   justify-content: center;
-  background-color: rgb(50, 50, 82);
+  background-color: #07639c;
   color: #fff;
   gap: 2rem;
   padding: 0.3rem;

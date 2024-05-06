@@ -1,5 +1,6 @@
 nav {
   padding: 0.5rem 0;
+  position: sticky;
 }
 .icon {
   place-content: center;

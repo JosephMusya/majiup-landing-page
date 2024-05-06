@@ -52,37 +52,53 @@ const Statement = () => {
         </div>
       </Fade>
       <Fade left>
-        <div className="statement-bottom">
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
-          >
-            <h1>Do you have tanks that need to be monitored?</h1>
-            <button style={{ backgroundColor: "#0072bb", color: "#fff" }}>
-              Get your majiup device now! <BsArrowRight />
-            </button>
+        <div className="main-statement">
+          <div className="statement-bottom">
             <div
-              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+              className="first-box"
+              style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
             >
-              <span>
-                <IoCheckmarkCircle size={iconSize} color="#0072bb" />
-                Majiup devices let you know when you are running low on water!
-              </span>
-              <span>
-                <IoCheckmarkCircle size={iconSize} color="#0072bb" />
-                Majiup devices monitor your water usage and eliminate wastage.
-              </span>
-              <span>
-                <IoCheckmarkCircle size={iconSize} color="#0072bb" />
-                Majiup devices notifies you of any potential leakages in your
-                tanks
-              </span>
+              <h1>Do you have tanks that need to be monitored?</h1>
+              <button className="get-dev">
+                Get your majiup device now! <BsArrowRight />
+              </button>
+              <div
+                className="majiup-device-desc"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                }}
+              >
+                <div>
+                  <IoCheckmarkCircle size={iconSize} color="#0072bb" />
+                  <p>
+                    Majiup devices let you know when you are running low on
+                    water!
+                  </p>
+                </div>
+                <div>
+                  <IoCheckmarkCircle size={iconSize} color="#0072bb" />
+                  <p>
+                    Majiup devices monitor your water usage and eliminate
+                    wastage.
+                  </p>
+                </div>
+                <div>
+                  <IoCheckmarkCircle size={iconSize} color="#0072bb" />
+                  <p>
+                    Majiup devices notifies you of any potential leakages in
+                    your tanks
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="majiup-image">
-            <img
-              src="https://d3f46d68kgqe8v.cloudfront.net/uploads/images/hero/_1200x630_crop_center-center_82_none/Mbns18_antimicrobial-protection-for-water-storage-tanks-mtime20190228164054.jpg?mtime=1703782775"
-              alt="majiup image"
-            />
+            <div className="majiup-image">
+              <img
+                src="https://d3f46d68kgqe8v.cloudfront.net/uploads/images/hero/_1200x630_crop_center-center_82_none/Mbns18_antimicrobial-protection-for-water-storage-tanks-mtime20190228164054.jpg?mtime=1703782775"
+                alt="majiup image"
+              />
+            </div>
           </div>
         </div>
       </Fade>
