@@ -39,7 +39,9 @@ export default function Request() {
 
       if (data) {
         navigate("/");
-        console.log("Added");
+        alert(
+          "We have received your request. We will contact you for confirmation.\nThank you for using Majiup!"
+        );
       } else if (error) {
         console.log(error);
         throw new Error("Failed to submit order");
@@ -53,7 +55,7 @@ export default function Request() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div style={{ padding: "2rem", minHeight: "60dvh", maxWidth: "680px" }}>
       <h1>Place your refill order now</h1>
       <div>
         <form onSubmit={submitOrder}>

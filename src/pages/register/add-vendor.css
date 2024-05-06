@@ -1,5 +1,6 @@
 .add-vendor {
   padding: 2rem;
+  max-width: 680px;
 }
 
 .add-vendor-form {

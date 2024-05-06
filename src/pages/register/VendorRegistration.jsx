@@ -39,7 +39,9 @@ export default function VendorRegistration() {
 
       if (data) {
         navigate("/");
-        console.log("Added");
+        alert(
+          "We added you on our platform. We will contact you for verification.\nThank you for using Majiup!"
+        );
       } else if (error) {
         console.log(error);
         throw new Error("Failed to add vendor");

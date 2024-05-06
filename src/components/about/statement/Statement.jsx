@@ -7,6 +7,7 @@ import { TiTickOutline } from "react-icons/ti";
 
 const Statement = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const iconSize = 25;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,15 +64,15 @@ const Statement = () => {
               style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
             >
               <span>
-                <TiTickOutline />
+                <TiTickOutline size={iconSize} />
                 Majiup devices let you know when you are running low on water!
               </span>
               <span>
-                <TiTickOutline />
+                <TiTickOutline size={iconSize} />
                 Majiup devices monitor your water usage and eliminate wastage.
               </span>
               <span>
-                <TiTickOutline />
+                <TiTickOutline size={iconSize} />
                 Majiup devices notifies you of any potential leakages in your
                 tanks
               </span>

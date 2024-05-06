@@ -45,7 +45,7 @@ function App() {
     );
   };
   return (
-    <>
+    <div>
       <Navbar />
       <Routes>
         <Route exact path="/" element={<MainContent />} />
@@ -55,7 +55,7 @@ function App() {
       </Routes>
       <br />
       <Footer />
-    </>
+    </div>
   );
 }
 
