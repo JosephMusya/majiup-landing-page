@@ -34,7 +34,7 @@ function App() {
         <Process />
         <Statement />
         <Products />
-        <Team />
+        {/* <Team /> */}
         <Mission />
         <FAQ />
         <Testimonials />

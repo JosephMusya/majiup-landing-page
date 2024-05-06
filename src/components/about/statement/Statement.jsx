@@ -3,7 +3,7 @@ import "./statement.css";
 import React, { useEffect, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import Fade from "react-reveal";
-import { TiTickOutline } from "react-icons/ti";
+import { IoCheckmarkCircle } from "react-icons/io5";
 
 const Statement = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -64,15 +64,15 @@ const Statement = () => {
               style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
             >
               <span>
-                <TiTickOutline size={iconSize} />
+                <IoCheckmarkCircle size={iconSize} color="#0072bb" />
                 Majiup devices let you know when you are running low on water!
               </span>
               <span>
-                <TiTickOutline size={iconSize} />
+                <IoCheckmarkCircle size={iconSize} color="#0072bb" />
                 Majiup devices monitor your water usage and eliminate wastage.
               </span>
               <span>
-                <TiTickOutline size={iconSize} />
+                <IoCheckmarkCircle size={iconSize} color="#0072bb" />
                 Majiup devices notifies you of any potential leakages in your
                 tanks
               </span>

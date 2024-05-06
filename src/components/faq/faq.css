@@ -1,0 +1,26 @@
+.faq-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 5rem;
+  gap: 2rem;
+}
+.faqs {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  row-gap: 1rem;
+  column-gap: 4rem;
+}
+
+.q {
+  padding: 1rem;
+  border: solid 2px aliceblue;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.q article {
+  font-weight: 600;
+}
