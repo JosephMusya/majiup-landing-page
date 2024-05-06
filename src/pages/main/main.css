@@ -109,4 +109,14 @@
 
 /* Small Size */
 @media screen and (max-width: 576px) {
+  .call-action {
+    gap: 0.5rem !important;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .call-action a {
+    width: 80% !important;
+  }
 }

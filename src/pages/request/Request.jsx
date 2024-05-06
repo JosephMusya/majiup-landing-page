@@ -55,7 +55,7 @@ export default function Request() {
   };
 
   return (
-    <div style={{ padding: "2rem", minHeight: "60dvh", maxWidth: "680px" }}>
+    <div style={{ padding: "2rem", minHeight: "69dvh", maxWidth: "1200px" }}>
       <h1>Place your refill order now</h1>
       <div>
         <form onSubmit={submitOrder}>

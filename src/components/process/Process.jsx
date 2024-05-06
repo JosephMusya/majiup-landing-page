@@ -15,20 +15,20 @@ export default function Process() {
             <ImMobile2 size={iconSize} />
           </div>
           <div>
-            <h2>Request for a water refill</h2>
+            <p>Request for a water refill</p>
           </div>
         </div>
         <div>
           <div className="step">
             <IoIosWater size={iconSize} />
           </div>
-          <h2>Set the quantity you need</h2>
+          <p>Set the quantity you need</p>
         </div>
         <div>
           <div className="step">
             <FaTruckDroplet size={iconSize} />
           </div>
-          <h2>Water is delivered</h2>
+          <p>Water is delivered</p>
         </div>
       </div>
     </div>
