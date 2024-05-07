@@ -23,6 +23,7 @@ import Process from "./components/process/Process";
 import FAQ from "./components/faq/FAQ";
 import VendorRegistration from "./pages/register/VendorRegistration";
 import Request from "./pages/request/Request";
+import { HashRouter } from "react-router-dom";
 
 function App() {
   const MainContent = () => {
@@ -47,12 +48,14 @@ function App() {
   return (
     <div>
       <Navbar />
-      <Routes>
-        <Route exact path="/" element={<MainContent />} />
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/vendor-registration" element={<VendorRegistration />} />
-        <Route path="/request-refill" element={<Request />} />
-      </Routes>
+      <HashRouter>
+        <Routes>
+          <Route exact path="/" element={<MainContent />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/vendor-registration" element={<VendorRegistration />} />
+          <Route path="/request-refill" element={<Request />} />
+        </Routes>
+      </HashRouter>
       <br />
       <Footer />
     </div>

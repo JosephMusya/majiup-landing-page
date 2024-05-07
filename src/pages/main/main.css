@@ -22,7 +22,7 @@
 }
 
 .headline h1 {
-  font-size: 38pt !important;
+  font-size: 36pt !important;
 }
 
 .description {
@@ -114,6 +114,10 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
+  }
+
+  .headline {
+    width: 100%;
   }
 
   .call-action a {

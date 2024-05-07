@@ -118,6 +118,7 @@
   .statement-heading {
     width: 100%;
     display: block;
+    margin-bottom: 2rem;
   }
 
   .statement-heading h1 {

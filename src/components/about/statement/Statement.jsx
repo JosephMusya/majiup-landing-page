@@ -36,7 +36,9 @@ const Statement = () => {
             <h1>Majiup is solving access to clean water problem in Kenya</h1>
           </div>
           <div className="statement-content">
-            <div>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            >
               <li>
                 Do not let your tanks run dry. Use majiup to order for a refill.
               </li>
