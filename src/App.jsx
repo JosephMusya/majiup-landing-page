@@ -48,14 +48,12 @@ function App() {
   return (
     <div>
       <Navbar />
-      <HashRouter>
-        <Routes>
-          <Route exact path="/" element={<MainContent />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/vendor-registration" element={<VendorRegistration />} />
-          <Route path="/request-refill" element={<Request />} />
-        </Routes>
-      </HashRouter>
+      <Routes>
+        <Route exact path="/" element={<MainContent />} />
+        <Route path="/careers" element={<Careers />} />
+        <Route path="/vendor-registration" element={<VendorRegistration />} />
+        <Route path="/request-refill" element={<Request />} />
+      </Routes>
       <br />
       <Footer />
     </div>
