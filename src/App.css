@@ -1,24 +1,24 @@
 .items {
-    padding: 0 2rem;
+  padding: 0 2rem;
 }
 
 /* Medium Size */
-@media screen and ( max-width: 992px) {
-    /* .items {
+@media screen and (max-width: 992px) {
+  /* .items {
         padding: 0 0.8rem;
     }     */
 }
 
 /* Tablet Size */
-@media screen and ( max-width: 768px) {
-    .items {
-        padding: 0 0.6rem;
-    }    
+@media screen and (max-width: 768px) {
+  .items {
+    padding: 0 0.6rem;
+  }
 }
 
 /* Small Size */
-@media screen and ( max-width: 576px) {
-    .items {
-        padding: 0 0.5rem;
-    }    
+@media screen and (max-width: 576px) {
+  .items {
+    padding: 0 0.5rem;
+  }
 }

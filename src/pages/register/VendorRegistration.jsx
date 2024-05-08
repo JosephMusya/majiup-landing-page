@@ -59,7 +59,7 @@ export default function VendorRegistration() {
 
   return (
     <div className="add-vendor">
-      <h1>Register with us</h1>
+      <h1> - Register with us</h1>
       <div>
         {errors.details && (
           <div>

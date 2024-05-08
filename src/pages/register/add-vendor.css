@@ -4,10 +4,22 @@
   min-height: 69dvh;
 }
 
+.add-vendor h1 {
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 .add-vendor-form {
   display: grid;
+  width: 100%;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+
+  /* background-color: red; */
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
 }
 
 .add-vendor-form div {

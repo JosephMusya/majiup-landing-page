@@ -73,21 +73,27 @@ const Statement = () => {
                 }}
               >
                 <div>
-                  <IoCheckmarkCircle size={iconSize} color="#0072bb" />
+                  <article>
+                    <IoCheckmarkCircle size={iconSize} color="#0072bb" />
+                  </article>
                   <p>
                     Majiup devices let you know when you are running low on
                     water!
                   </p>
                 </div>
                 <div>
-                  <IoCheckmarkCircle size={iconSize} color="#0072bb" />
+                  <article>
+                    <IoCheckmarkCircle size={iconSize} color="#0072bb" />
+                  </article>
                   <p>
                     Majiup devices monitor your water usage and eliminate
                     wastage.
                   </p>
                 </div>
                 <div>
-                  <IoCheckmarkCircle size={iconSize} color="#0072bb" />
+                  <article>
+                    <IoCheckmarkCircle size={iconSize} color="#0072bb" />
+                  </article>
                   <p>
                     Majiup devices notifies you of any potential leakages in
                     your tanks

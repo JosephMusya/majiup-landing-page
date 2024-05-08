@@ -16,7 +16,7 @@
 
 .products-content {
   display: grid;
-  grid-template-columns: repeat(3, 25%);
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   align-items: center;
   justify-content: center;
   gap: 2rem;
@@ -73,25 +73,4 @@
 .view-more:hover {
   background-color: #f35e19;
   color: #fff;
-}
-
-/* Medium Size */
-@media screen and (max-width: 992px) {
-  .products-content {
-    grid-template-columns: repeat(2, 35%);
-  }
-}
-
-/* Tablet Size */
-@media screen and (max-width: 768px) {
-  .products-content {
-    grid-template-columns: repeat(2, 40%);
-  }
-}
-
-/* Small Size */
-@media screen and (max-width: 576px) {
-  .products-content {
-    grid-template-columns: repeat(2, 45%);
-  }
 }

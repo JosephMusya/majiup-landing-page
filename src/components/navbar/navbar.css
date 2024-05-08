@@ -72,7 +72,8 @@ nav {
 /* Tablet Size */
 @media screen and (max-width: 768px) {
   .nav {
-    display: none;
+    width: 0;
+    /* display: none; */
   }
 
   .show {
@@ -80,15 +81,21 @@ nav {
     display: flex;
     flex-direction: column;
     z-index: 1;
-    border-radius: 0px 4px 4px 0;
-    width: 50%;
     justify-content: start;
     align-items: start;
-    padding-left: 0.5rem;
-    /* background-color: var(--background-color); */
     background-color: var(--text-color);
     color: #fff;
     line-height: 2.5;
+    transition: width 0.5s;
+  }
+
+  .show {
+    width: 100% !important;
+  }
+
+  .hidden {
+    width: 0%;
+    display: none;
   }
 
   .nav-elements {
@@ -117,6 +124,6 @@ nav {
 /* Small Size */
 @media screen and (max-width: 576px) {
   .show {
-    width: 40%;
+    padding: 8px;
   }
 }

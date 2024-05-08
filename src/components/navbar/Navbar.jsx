@@ -39,50 +39,52 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="bars">
-        {showNav ? (
-          <MdOutlineClose
-            onClick={toggleNav}
-            size={23}
-            style={{ cursor: "pointer" }}
-          />
-        ) : (
-          <LiaBarsSolid
-            onClick={toggleNav}
-            size={23}
-            style={{ cursor: "pointer" }}
-          />
-        )}
-      </div>
-      <div className={showNav ? "nav show" : "nav hidden"} ref={nav}>
-        <div className="icon">
-          <img src={logo} alt="logo" />
-          <strong>Majiup</strong>
+      <div>
+        <div className="bars">
+          {showNav ? (
+            <MdOutlineClose
+              onClick={toggleNav}
+              size={25}
+              style={{ cursor: "pointer" }}
+            />
+          ) : (
+            <LiaBarsSolid
+              onClick={toggleNav}
+              size={25}
+              style={{ cursor: "pointer" }}
+            />
+          )}
         </div>
-        <div className="nav-elements">
-          <li
-            onClick={() => {
-              navigate("/"), setShowNav(false);
-            }}
-          >
-            Home
-          </li>
-          <li>
-            Products <RiArrowDropDownLine size={23} />
-          </li>
-          <li>
-            Resources & Docs <RiArrowDropDownLine size={23} />
-          </li>
-          <li className="contacts">
-            Contacts <RiArrowDropDownLine size={23} />
-          </li>
-          <li
-            onClick={() => {
-              navigate("/careers"), setShowNav(false);
-            }}
-          >
-            Careers
-          </li>
+        <div className={showNav ? "nav show" : "nav hidden"} ref={nav}>
+          <div className="icon">
+            <img src={logo} alt="logo" />
+            <strong>Majiup</strong>
+          </div>
+          <div className="nav-elements">
+            <li
+              onClick={() => {
+                navigate("/"), setShowNav(false);
+              }}
+            >
+              Home
+            </li>
+            <li>
+              Products <RiArrowDropDownLine size={23} />
+            </li>
+            <li>
+              Resources & Docs <RiArrowDropDownLine size={23} />
+            </li>
+            <li className="contacts">
+              Contacts <RiArrowDropDownLine size={23} />
+            </li>
+            <li
+              onClick={() => {
+                navigate("/careers"), setShowNav(false);
+              }}
+            >
+              Careers
+            </li>
+          </div>
         </div>
       </div>
     </nav>

@@ -1,80 +1,82 @@
 .news-disp {
-    display: flex;
-    margin-top: 1rem;    
-    place-items: center;
-    padding: 0 1rem;
+  display: flex;
+  margin-top: 1rem;
+  place-items: center;
+  padding: 0 1rem;
 }
 
 .news-top {
-    position: relative;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  position: relative;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .news-top h1 {
-    font-weight: bold;
-    position: inherit;
-    width: 60%;
-    line-height: 1.3;    
+  font-weight: bold;
+  position: inherit;
+  width: 60%;
+  line-height: 1.3;
 }
 
 .news-top article {
-    width: 80%;
+  width: 80%;
 }
 
 .news-bottom {
-    position: relative;
-    width: 50%;
-    display: flex;
-    place-items: center;
-    justify-content: center;
+  position: relative;
+  width: 50%;
+  display: flex;
+  place-items: center;
+  justify-content: center;
 }
 
 .news-content {
-    width: 300px;
-    aspect-ratio: 1;
-    display: flex;
-    flex-direction: column;
+  width: 300px;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .news-content img {
-    width: inherit;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border-radius: 1rem;
+  width: inherit;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 1rem;
 }
 
 /* Medium Size */
-@media screen and ( max-width: 992px) {
-   
+@media screen and (max-width: 992px) {
 }
 
 /* Tablet Size */
-@media screen and ( max-width: 768px) {
-    .news-disp {
-        padding: 0 0.7rem;
-    } 
+@media screen and (max-width: 768px) {
+  .news-disp {
+    padding: 0 0.7rem;
+  }
+
+  .news-top h1 {
+    width: 100%;
+  }
 }
 
 /* Small Size */
-@media screen and ( max-width: 576px) {
-    .news-disp {
-        flex-direction: column;
-        padding: 0 0.5rem;
-    }   
+@media screen and (max-width: 576px) {
+  .news-disp {
+    flex-direction: column;
+    padding: 0 0.5rem;
+  }
 
-    .news-top {
-        width: 100%;
-    }
+  .news-top {
+    width: 100%;
+  }
 
+  .news-bottom {
+    width: 100%;
+  }
 
-    .news-bottom {
-        width: 100%;      
-    }
-
-    .news-content {
-        width: 100%;        
-    }
+  .news-content {
+    width: 100%;
+  }
 }
