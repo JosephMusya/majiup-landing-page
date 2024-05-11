@@ -38,8 +38,8 @@ function App() {
         {/* <Team /> */}
         <Mission />
         <FAQ />
-        <Testimonials />
-        <News />
+        {/* <Testimonials /> */}
+        {/* <News /> */}
         <Subscribe />
         <Chat />
       </div>

@@ -68,15 +68,9 @@ const Navbar = () => {
             >
               Home
             </li>
-            <li>
-              Products <RiArrowDropDownLine size={23} />
-            </li>
-            <li>
-              Resources & Docs <RiArrowDropDownLine size={23} />
-            </li>
-            <li className="contacts">
-              Contacts <RiArrowDropDownLine size={23} />
-            </li>
+            <li href="#products">Products </li>
+            <li>Resources & Docs </li>
+            <li className="contacts">Contacts </li>
             <li
               onClick={() => {
                 navigate("/careers"), setShowNav(false);

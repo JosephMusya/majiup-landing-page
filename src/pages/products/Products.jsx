@@ -12,9 +12,9 @@ import { FaTruckDroplet } from "react-icons/fa6";
 const Products = () => {
   const iconSize = 60;
   return (
-    <div className="products">
+    <div className="products" id="products">
       <h1>
-        <Rotate cascade>Our services</Rotate>
+        <Rotate cascade>Our products & services</Rotate>
       </h1>
       {/* <button className='view-more'>See all Features <BsArrowRight /></button> */}
       <div className="products-content">
