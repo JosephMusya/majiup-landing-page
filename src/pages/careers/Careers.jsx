@@ -52,7 +52,7 @@ const Careers = () => {
         <article>
           Submit application to{" "}
           <span style={{ color: "#0072bb", cursor: "pointer" }}>
-            contact@majiup.org
+            contact@majiup.com
           </span>
         </article>
       </div>
