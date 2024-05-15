@@ -2,7 +2,6 @@ import React from "react";
 import "./footer.css";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
-
 const Footer = () => {
   return (
     <div className="footer">

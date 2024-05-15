@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import Fade from "react-reveal";
 import { IoCheckmarkCircle } from "react-icons/io5";
+import casing from "../../../assets/majiup-casing.jpg";
 
 const Statement = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -102,10 +103,7 @@ const Statement = () => {
               </div>
             </div>
             <div className="majiup-image">
-              <img
-                src="https://d3f46d68kgqe8v.cloudfront.net/uploads/images/hero/_1200x630_crop_center-center_82_none/Mbns18_antimicrobial-protection-for-water-storage-tanks-mtime20190228164054.jpg?mtime=1703782775"
-                alt="majiup image"
-              />
+              <img src={casing} alt="majiup casing image" />
             </div>
           </div>
         </div>

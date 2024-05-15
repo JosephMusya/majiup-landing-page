@@ -1,6 +1,7 @@
 import React from "react";
 import "./chat.css";
 import { LuSendHorizonal } from "react-icons/lu";
+import waziupLogo from "../../assets/waziup-logo.svg";
 
 const Chat = () => {
   return (
@@ -26,6 +27,22 @@ const Chat = () => {
             />
           </article>
         </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        <p>Powered by waziup IoT Technology</p>
+        <a href="https://www.waziup.org" target="_blank">
+          <img
+            src={waziupLogo}
+            style={{ width: "8rem", aspectRatio: 1 }}
+            alt="Waziup Logo"
+          />
+        </a>
       </div>
     </div>
   );

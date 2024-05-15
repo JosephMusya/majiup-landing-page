@@ -50,7 +50,7 @@ const Careers = () => {
       >
         <AiOutlineInfoCircle size={30} />
         <article>
-          Submit application to{" "}
+          Submit your application to{" "}
           <span style={{ color: "#0072bb", cursor: "pointer" }}>
             contact@majiup.com
           </span>
