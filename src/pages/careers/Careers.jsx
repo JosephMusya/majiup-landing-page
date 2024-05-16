@@ -13,9 +13,9 @@ import markdown from "./md/careers.md";
 const Careers = () => {
   return (
     <div className="careers">
-      <h1>
+      {/* <h1>
         <GoDash /> We are Hiring
-      </h1>
+      </h1> */}
       <div>
         <Markdown>{markdown}</Markdown>
       </div>
@@ -48,13 +48,13 @@ const Careers = () => {
           backgroundColor: "",
         }}
       >
-        <AiOutlineInfoCircle size={30} />
+        {/* <AiOutlineInfoCircle size={30} />
         <article>
           Submit your application to{" "}
           <span style={{ color: "#0072bb", cursor: "pointer" }}>
             contact@majiup.com
           </span>
-        </article>
+        </article> */}
       </div>
     </div>
   );
