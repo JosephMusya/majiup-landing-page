@@ -69,7 +69,13 @@ const Navbar = () => {
               Home
             </li>
             <li href="#products">Products </li>
-            <li>Resources & Docs </li>
+            <li
+              onClick={() => {
+                navigate("/resources", setShowNav(false));
+              }}
+            >
+              Resources & Docs{" "}
+            </li>
             <li className="contacts">Contacts </li>
             <li
               onClick={() => {

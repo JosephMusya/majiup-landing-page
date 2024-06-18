@@ -18,6 +18,11 @@
   padding: 0.5rem;
 }
 
+.footer-content a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .footer-content div {
   position: relative;
   padding: 0 0.5rem;

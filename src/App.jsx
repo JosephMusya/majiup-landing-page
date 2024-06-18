@@ -24,6 +24,7 @@ import FAQ from "./components/faq/FAQ";
 import VendorRegistration from "./pages/register/VendorRegistration";
 import Request from "./pages/request/Request";
 import { HashRouter } from "react-router-dom";
+import Resources from "./pages/resources/Resources";
 
 function App() {
   const MainContent = () => {
@@ -53,6 +54,7 @@ function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/vendor-registration" element={<VendorRegistration />} />
         <Route path="/request-refill" element={<Request />} />
+        <Route path="/resources" element={<Resources />} />
       </Routes>
       <br />
       <Footer />

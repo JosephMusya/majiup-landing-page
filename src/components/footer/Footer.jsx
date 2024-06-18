@@ -2,6 +2,7 @@ import React from "react";
 import "./footer.css";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="footer">
@@ -21,7 +22,7 @@ const Footer = () => {
         <div>
           <strong>Resources</strong>
           <li>Installation guide</li>
-          <li>Majiup software user guide</li>
+          <Link to="/resources">Majiup software user guide</Link>
         </div>
       </div>
       <div className="bottom">
