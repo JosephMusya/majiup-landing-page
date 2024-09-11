@@ -1,0 +1,17 @@
+.order-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: "solid 1px";
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 0.8rem;
+  justify-content: center;
+  min-width: 325px;
+  height: fit-content;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.order-card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}

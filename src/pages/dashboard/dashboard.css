@@ -1,0 +1,17 @@
+.dashboard {
+  /* min-height: 90dvh; */
+  display: flex;
+  width: 100%;
+}
+
+.orders {
+  display: grid;
+  width: inherit;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.orders-heading {
+  font-weight: bold;
+}

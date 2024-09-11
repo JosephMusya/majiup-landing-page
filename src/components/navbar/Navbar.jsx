@@ -68,15 +68,31 @@ const Navbar = () => {
             >
               Home
             </li>
-            <li href="#products">Products </li>
-            <li
+            {/* <li href="#products">Products </li> */}
+            {/* <li
               onClick={() => {
                 navigate("/resources", setShowNav(false));
               }}
             >
               Resources & Docs{" "}
-            </li>
+            </li> */}
             <li className="contacts">Contacts </li>
+
+            <li
+              onClick={() => {
+                navigate("/dashboard", setShowNav(false));
+              }}
+              style={{ fontWeight: "bold" }}
+            >
+              My Account
+            </li>
+            <li
+              onClick={() => {
+                navigate("/login", setShowNav(false));
+              }}
+            >
+              LOGIN / SIGN UP
+            </li>
             <li
               onClick={() => {
                 navigate("/careers"), setShowNav(false);

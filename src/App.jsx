@@ -2,14 +2,12 @@ import "./App.css";
 import Main from "./pages/main/Main";
 import Products from "./pages/products/Products";
 import FAQs from "./pages/faq/FAQ";
-// import Statement from './pages/statement/Statement';
 import Footer from "./components/footer/Footer";
 import { Routes, Route } from "react-router-dom";
 import Careers from "./pages/careers/Careers";
 import ProductView from "./pages/productView/ProductView";
 import AllProductView from "./pages/AllProductView/AllProductView";
 import Navbar from "./components/navbar/Navbar";
-import "./App.css";
 import Statement from "./components/about/statement/Statement";
 import Team from "./components/about/team/Team";
 import Testimonials from "./components/about/testimonials/Testimonials";
@@ -23,11 +21,14 @@ import Process from "./components/process/Process";
 import FAQ from "./components/faq/FAQ";
 import VendorRegistration from "./pages/register/VendorRegistration";
 import Request from "./pages/request/Request";
-import { HashRouter } from "react-router-dom";
 import Resources from "./pages/resources/Resources";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Login from "./pages/login/Login";
 
 function App() {
   const MainContent = () => {
+    document.title = "Majiup";
+
     return (
       <div className="items">
         <Zoom duration={1000}>
@@ -36,11 +37,8 @@ function App() {
         <Process />
         <Statement />
         <Products />
-        {/* <Team /> */}
         <Mission />
         <FAQ />
-        {/* <Testimonials /> */}
-        {/* <News /> */}
         <Subscribe />
         <Chat />
       </div>
@@ -55,9 +53,11 @@ function App() {
         <Route path="/vendor-registration" element={<VendorRegistration />} />
         <Route path="/request-refill" element={<Request />} />
         <Route path="/resources" element={<Resources />} />
+        <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <br />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
