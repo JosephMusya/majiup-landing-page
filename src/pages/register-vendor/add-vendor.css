@@ -1,0 +1,55 @@
+.add-vendor {
+  padding: 2rem;
+  max-width: 1200px;
+  min-height: 69dvh;
+}
+
+.add-vendor h1 {
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-vendor-form {
+  display: grid;
+  width: 100%;
+  gap: 1rem;
+
+  /* background-color: red; */
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+}
+
+.add-vendor-form div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.add-vendor-form div input {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: solid 1px;
+  outline-color: var(--primary-color);
+  font-size: large;
+}
+
+.submit-vendor {
+  padding: 1rem 0;
+}
+
+.submit-vendor button {
+  padding: 0.8rem;
+  font-size: large;
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  background-color: var(--primary-color);
+}
+
+.submit-vendor button:hover {
+  transform: scale(1.05);
+}

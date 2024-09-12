@@ -1,0 +1,18 @@
+.floating-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.floating-btn button {
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

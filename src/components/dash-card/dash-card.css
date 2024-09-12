@@ -1,0 +1,31 @@
+.dash-card {
+  position: inherit;
+  width: 22rem;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
+
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dash-card section {
+  display: flex;
+  flex-direction: column !important;
+  gap: 0.8rem !important;
+}
+.icon-container {
+  background-color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  /* width: fit-content; */
+  aspect-ratio: 1;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
