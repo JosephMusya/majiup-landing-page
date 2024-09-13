@@ -1,11 +1,10 @@
 import { IoMdAdd } from "react-icons/io";
 import "./floating-btn.css";
 import { Link } from "react-router-dom";
-const FloatingButton = () => {
+const FloatingButton = ({ to, title }) => {
   return (
-    <Link className="floating-btn" to="/add-water-vendors">
-      <button title="Add vendor">
-        {" "}
+    <Link className="floating-btn" to={to}>
+      <button title={title ? title : "Add"}>
         <IoMdAdd size={30} />
       </button>
     </Link>

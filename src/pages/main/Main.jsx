@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 const Main = () => {
   const navigate = useNavigate();
+  const iconSize = 23;
   return (
     <div className="home">
       <div className="headline">
@@ -17,11 +18,11 @@ const Main = () => {
         </article>
       </div>
       <div className="call-action">
-        <Link to="/request-refill" className="request-btn">
-          Request water refill <BsArrowRight size={23} />
+        <Link to="/dashboard" className="request-btn">
+          Request water refill <BsArrowRight size={iconSize} />
         </Link>
-        <Link to="/vendor-registration" className="register-v">
-          Register as vendor <BsArrowRight size={23} />
+        <Link to="/dashboard" className="register-v">
+          Register as vendor <BsArrowRight size={iconSize} />
         </Link>
       </div>
     </div>

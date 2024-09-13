@@ -19,7 +19,7 @@ export default function Register() {
           <input id="username" type="text" placeholder="username" />
         </div>
         <div className="login-input">
-          <label htmlFor="password">User Type</label>
+          <label htmlFor="user">User Type</label>
           {/* <div>
             <FaLock />
           </div> */}

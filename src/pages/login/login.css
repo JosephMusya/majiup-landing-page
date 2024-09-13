@@ -26,6 +26,8 @@
   text-align: start;
 }
 
+.form-input input,
+.form-input select,
 .login-input input,
 .login-input select {
   position: relative;
@@ -48,6 +50,7 @@
   background-color: var(--primary-color);
 }
 
+.custom-button,
 .login-action button {
   width: 100% !important;
   text-align: center !important;

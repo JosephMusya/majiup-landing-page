@@ -1,9 +1,16 @@
 import React from "react";
 import "./ordercard.css";
 
-export default function OrderCard() {
+export default function OrderCard({
+  onClick,
+  name,
+  status,
+  quantity,
+  price,
+  time,
+}) {
   return (
-    <div className="order-card" style={{}}>
+    <div onClick={onClick} className="order-card" style={{}}>
       <div
         style={{
           display: "flex",

@@ -32,8 +32,8 @@ export default function OrderView({ onClick }) {
         <section className="cards">
           <DashCard
             description="Liters Requested"
-            number={`${4000} `}
-            unit="Ltrs"
+            number={4000}
+            unit=" Ltrs"
             icon={<MdWaterDrop size={iSize} color="#fff" />}
           />
           <DashCard

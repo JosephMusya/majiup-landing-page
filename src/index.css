@@ -63,6 +63,18 @@ body {
   background-color: #f1f1f1; /* Color of the scrollbar track */
 }
 
+.flex-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.flex-column {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 /* Medium Size */
 @media screen and (max-width: 992px) {
 }
@@ -73,4 +85,8 @@ body {
 
 /* Small Size */
 @media screen and (max-width: 576px) {
+}
+
+input::placeholder {
+  font-family: "Poppins", sans-serif !important;
 }

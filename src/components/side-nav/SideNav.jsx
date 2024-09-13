@@ -7,6 +7,7 @@ import { ImCancelCircle } from "react-icons/im";
 import { LuClock3 } from "react-icons/lu";
 import { MdDoneAll } from "react-icons/md";
 import { HashRouter } from "react-router-dom";
+import { FaTruckDroplet } from "react-icons/fa6";
 
 export default function SideNav() {
   const iconSize = 24;
@@ -54,6 +55,14 @@ export default function SideNav() {
       </div>
       <div className="link-div">
         <div>
+          <FaTruckDroplet size={iconSize} color="#fff" />
+        </div>
+        <Link to="trucks" className="link">
+          MY TRUCKS
+        </Link>
+      </div>
+      <div className="link-div">
+        <div>
           <MdOutlineNotifications size={iconSize} color="#fff" />
         </div>
         <Link to="notifications" className="link">
@@ -69,11 +78,15 @@ export default function SideNav() {
           bottom: "5%",
         }}
       >
+        <Link to="profile/1" className="link">
+          <div>
+            <IoPersonOutline size={40} />
+          </div>
+        </Link>
         <div>
-          <IoPersonOutline size={40} />
-        </div>
-        <div>
-          <h2 style={{ fontWeight: "bold" }}>Josee Mie</h2>
+          <Link to="profile/1" className="link">
+            <h2 style={{ fontWeight: "bold" }}>Josee Mie</h2>
+          </Link>
           <Link to="/" className="link">
             LOGOUT
           </Link>

@@ -8,6 +8,12 @@ import Cancelled from "../orders-page/Cancelled";
 import InProgress from "../orders-page/InProgress";
 import Completed from "../orders-page/Completed";
 import Notifications from "../notifications/Notifications";
+import OrderViewPage from "../orders-page/OrderviewPage";
+import Profile from "../profile/Profile";
+import Trucks from "../trucks/Trucks";
+import AddTrucks from "../add-truck/AddTrucks";
+import Login from "../login/Login";
+import CreateOrder from "../create-order/CreateOrder";
 
 export default function Dashboard() {
   const logedIn = true;
@@ -36,6 +42,11 @@ export default function Dashboard() {
           <Route path="/completed" element={<Completed />} />
           <Route path="/cancelled" element={<Cancelled />} />
           <Route path="/notifications" element={<Notifications />} />
+          <Route path="/order/:id" element={<OrderViewPage />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/trucks" element={<Trucks />} />
+          <Route path="/add-truck" element={<AddTrucks />} />
+          <Route path="/create-order" element={<CreateOrder />} />
           {/* Other nested routes */}
         </Routes>
       </div>

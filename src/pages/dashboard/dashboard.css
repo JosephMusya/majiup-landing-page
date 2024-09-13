@@ -12,6 +12,13 @@
   padding: 1rem 0;
 }
 
-.orders-heading {
+.orders-heading,
+h1 {
   font-weight: bold;
+}
+
+.dashboard-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }

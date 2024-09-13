@@ -1,0 +1,33 @@
+.vendor-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.vendor-details:hover {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+}
+
+.vendor-details article {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trucks {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.disp-icon {
+  color: var(--primary-color);
+}

@@ -19,11 +19,12 @@ import Zoom from "react-reveal/Zoom";
 import Mission from "./components/mission/Mission";
 import Process from "./components/process/Process";
 import FAQ from "./components/faq/FAQ";
-import VendorRegistration from "./pages/register/VendorRegistration";
+// import VendorRegistration from "./pages/register/VendorRegistration";
 import Request from "./pages/request/Request";
 import Resources from "./pages/resources/Resources";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 
 function App() {
   const MainContent = () => {
@@ -50,11 +51,12 @@ function App() {
       <Routes>
         <Route exact path="/" element={<MainContent />} />
         <Route path="/careers" element={<Careers />} />
-        <Route path="/vendor-registration" element={<VendorRegistration />} />
+        {/* <Route path="/vendor-registration" element={<VendorRegistration />} /> */}
         <Route path="/request-refill" element={<Request />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
       <br />
       {/* <Footer /> */}

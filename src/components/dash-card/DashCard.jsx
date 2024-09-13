@@ -2,7 +2,11 @@ import "./dash-card.css";
 
 const DashCard = ({ icon, number, description, unit, onClick }) => {
   return (
-    <div className="dash-card" onClick={onClick}>
+    <div
+      className="dash-card"
+      onClick={onClick}
+      style={{ cursor: onClick ? "pointer" : "default" }}
+    >
       <section>
         <h1 className="orders-heading">
           {number.toLocaleString()} {unit}
