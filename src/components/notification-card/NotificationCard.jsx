@@ -17,10 +17,26 @@ export default function NotificationCard({ active }) {
       </div>
       <div
         className="flex-column"
-        style={{ gap: "0.2rem", color: active && "#fff" }}
+        style={{
+          position: "relative",
+          width: "100%",
+          gap: "0.2rem",
+          color: active && "#fff",
+        }}
       >
         <article style={{ fontWeight: "bold" }}>Notification Title</article>
         <article style={{}}>Notification Message to be listed here</article>
+        <small
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            alignSelf: "flex-end",
+            fontSize: "small",
+          }}
+        >
+          2 hrs ago
+        </small>
       </div>
     </div>
   );
