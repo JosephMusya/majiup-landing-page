@@ -12,6 +12,18 @@ export default function Notifications() {
         <NotificationCard active={true} />
         <NotificationCard />
         <NotificationCard />
+        <NotificationCard active={true} />
+        <NotificationCard />
+        <NotificationCard />
+        <NotificationCard />
+        <NotificationCard active={true} />
+        <NotificationCard active={true} />
+        <NotificationCard />
+        <NotificationCard />
+        <NotificationCard />
+        <NotificationCard />
+        <NotificationCard />
+        <NotificationCard />
       </div>
     </div>
   );

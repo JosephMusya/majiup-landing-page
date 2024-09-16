@@ -12,6 +12,8 @@ export default function MainViewPage() {
   const iconSize = 40;
   const navigate = useNavigate();
 
+  document.title = "Dashboard";
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
