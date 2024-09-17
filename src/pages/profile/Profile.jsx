@@ -3,7 +3,9 @@ import DashCard from "../../components/dash-card/DashCard";
 import { FaTruckDroplet } from "react-icons/fa6";
 import { MdVerified } from "react-icons/md";
 import { FaHandHoldingWater } from "react-icons/fa";
+import { useUserContext } from "../../providers/UserProvider";
 export default function Profile() {
+  const { authUser } = useUserContext();
   const profileElementStyle = {
     display: "flex",
     justifyContent: "space-between",
@@ -34,7 +36,8 @@ export default function Profile() {
                 lineHeight: 1,
               }}
             >
-              Vallery Makesa
+              {/* {authUser.} */}
+              Vallery Murevi
             </h1>
             <span
               style={{

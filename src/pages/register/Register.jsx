@@ -7,6 +7,7 @@ import { useState } from "react";
 
 export default function Register() {
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,20 +15,24 @@ export default function Register() {
   const registerUser = async (e) => {
     setLoading(true);
     e.preventDefault();
-    console.log(phone, password);
     try {
       const { data, error } = await supabase.auth.signUp({
-        phone: phone.target?.value,
-        password: password.target?.value,
+        email: email,
+        password: password,
         options: {
-          name: name.target?.value,
+          data: {
+            name: name,
+            phone: phone,
+          },
         },
       });
+
       if (data) {
         console.log(data);
       }
+
       if (error) {
-        // throw new Error({ error: error });
+        throw new Error({ error: error });
       }
     } catch (error) {
       console.error("ERROR: ->", error);
@@ -58,7 +63,7 @@ export default function Register() {
               required
             />
           </div>
-          {/* <div className="login-input">
+          <div className="login-input">
             <label htmlFor="email">Email</label>
             <input
               id="email"
@@ -67,7 +72,7 @@ export default function Register() {
               onChange={(text) => setEmail(text.target.value)}
               required
             />
-          </div> */}
+          </div>
           <div className="login-input">
             <label htmlFor="phone">Phone</label>
             <input
