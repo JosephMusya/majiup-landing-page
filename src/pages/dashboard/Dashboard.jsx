@@ -14,12 +14,14 @@ import Trucks from "../trucks/Trucks";
 import AddTrucks from "../add-truck/AddTrucks";
 import Login from "../login/Login";
 import CreateOrder from "../create-order/CreateOrder";
+import { useUserContext } from "../../providers/UserProvider";
+import EditTruck from "../add-truck/EditTruck";
 
 export default function Dashboard() {
-  const logedIn = true;
+  const { authUser, loadingUser } = useUserContext();
   document.title = "Majiup Dashboard";
 
-  return logedIn ? (
+  return authUser ? (
     <div className="dashboard">
       <div
         style={{
@@ -29,7 +31,7 @@ export default function Dashboard() {
           justifyContent: "center",
           minWidth: "22dvw",
           position: "sticky",
-          top: "9%",
+          top: "10%",
           left: 0,
         }}
       >
@@ -46,6 +48,7 @@ export default function Dashboard() {
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/trucks" element={<Trucks />} />
           <Route path="/add-truck" element={<AddTrucks />} />
+          <Route path="/edit-truck/:id" element={<EditTruck />} />
           <Route path="/create-order" element={<CreateOrder />} />
           {/* Other nested routes */}
         </Routes>

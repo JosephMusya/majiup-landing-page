@@ -25,14 +25,17 @@ import Resources from "./pages/resources/Resources";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import { useUserContext } from "./providers/UserProvider";
 
 function App() {
+  const { authUser, profile } = useUserContext();
+
   const MainContent = () => {
     document.title = "Majiup";
 
     return (
       <div className="items">
-        <Zoom duration={1000}>
+        <Zoom duration={500}>
           <Main />
         </Zoom>
         <Process />
@@ -47,7 +50,7 @@ function App() {
   };
   return (
     <div>
-      <Navbar />
+      <Navbar user={authUser} profile={profile} />
       <Routes>
         <Route exact path="/" element={<MainContent />} />
         <Route path="/careers" element={<Careers />} />

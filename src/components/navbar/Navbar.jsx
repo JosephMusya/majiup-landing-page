@@ -6,10 +6,25 @@ import logo from "../../assets/logo/logo.png";
 import { LiaBarsSolid } from "react-icons/lia";
 import { useEffect } from "react";
 import { MdOutlineClose } from "react-icons/md";
+import supabase from "../../config/supabaseConfig";
 
 // import { RiArrowDropDownLine } from 'react-icons/ri';
+export const logoutUser = async () => {
+  try {
+    const { data, error } = await supabase.auth.signOut();
 
-const Navbar = () => {
+    if (error) {
+      throw new Error(error);
+    }
+    if (data) {
+      console.log("Logged out user");
+    }
+  } catch (error) {
+    console.error(error);
+  } finally {
+  }
+};
+const Navbar = ({ user, profile }) => {
   const nav = useRef();
 
   const [showNav, setShowNav] = useState(false);
@@ -86,20 +101,24 @@ const Navbar = () => {
             >
               My Account
             </li>
-            <li
-              onClick={() => {
-                navigate("/login", setShowNav(false));
-              }}
-            >
-              LOGIN / SIGN UP
-            </li>
-            <li
+            {!user ? (
+              <li
+                onClick={() => {
+                  navigate("/login", setShowNav(false));
+                }}
+              >
+                LOGIN / SIGN UP
+              </li>
+            ) : (
+              <li onClick={() => logoutUser()}>LOGOUT</li>
+            )}
+            {/* <li
               onClick={() => {
                 navigate("/careers"), setShowNav(false);
               }}
             >
               Careers
-            </li>
+            </li> */}
           </div>
         </div>
       </div>

@@ -5,27 +5,41 @@ import { FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import supabase from "../../config/supabaseConfig";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 export default function Login() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const loginUser = async (e) => {
     e.preventDefault();
     console.log(email, password);
     try {
-      let { data, error } = await supabase.auth.signInWithPassword({
+      setLoading(true);
+      let {
+        data: { user, session },
+        error,
+      } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       });
-      if (data) {
-        console.log(data);
+      if (user && session) {
+        toast.success("Login successful");
+        navigate("/dashboard");
+        // console.log(data);
       } else if (error) {
-        throw new Error(error);
+        throw new Error(error.message);
       }
     } catch (error) {
-      console.error(error);
+      toast.error(error?.message);
+      console.error(error?.message);
     } finally {
+      setLoading(false);
     }
   };
 
@@ -55,7 +69,7 @@ export default function Login() {
             />
           </div>
           <div className="login-action">
-            <button type="submit">LOGIN</button>
+            <button type="submit">{loading ? "Loading..." : "LOGIN"}</button>
             {/* <article style={{ textAlign: "center" }}>OR</article>
           <button className="google-login">Continue with Google</button> */}
           </div>

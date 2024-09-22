@@ -4,8 +4,10 @@ import { FaTruckDroplet } from "react-icons/fa6";
 import { MdVerified } from "react-icons/md";
 import { FaHandHoldingWater } from "react-icons/fa";
 import { useUserContext } from "../../providers/UserProvider";
+import { timeAgo } from "../../utils/helpers/timeAgo";
 export default function Profile() {
-  const { authUser } = useUserContext();
+  const { authUser, profile, loadingUser } = useUserContext();
+
   const profileElementStyle = {
     display: "flex",
     justifyContent: "space-between",
@@ -36,8 +38,7 @@ export default function Profile() {
                 lineHeight: 1,
               }}
             >
-              {/* {authUser.} */}
-              Vallery Murevi
+              {profile?.name}
             </h1>
             <span
               style={{
@@ -48,7 +49,7 @@ export default function Profile() {
             </span>
           </div>
 
-          <article>Joined 5 Months ago</article>
+          <article>{timeAgo(profile?.created_at)} on Majiup</article>
         </div>
         <div
           style={{
@@ -66,7 +67,7 @@ export default function Profile() {
               padding: "0.6rem 0.9rem",
             }}
           >
-            Edit Profile
+            Update Profile
           </button>
         </div>
       </div>
@@ -96,23 +97,23 @@ export default function Profile() {
 
         <div style={profileElementStyle}>
           <article style={profileTitle}>Name</article>
-          <article>Vallery Makesa</article>
+          <article>{profile?.name}</article>
         </div>
         <div style={profileElementStyle}>
           <article style={profileTitle}>Area of Operartion</article>
-          <article>Kasarani</article>
+          <article>{profile?.town}</article>
         </div>
         <div style={profileElementStyle}>
           <article style={profileTitle}>Phone</article>
-          <article>+254757405701</article>
+          <article>+{profile?.phone}</article>
         </div>
         <div style={profileElementStyle}>
           <article style={profileTitle}>Email</article>
-          <article>contacts@majiup.com</article>
+          <article>{profile?.email}</article>
         </div>
         <div style={profileElementStyle}>
           <article style={profileTitle}>Joined</article>
-          <article>June 24, 2023</article>
+          <article>{timeAgo(profile?.created_at)} ago</article>
         </div>
       </div>
     </div>

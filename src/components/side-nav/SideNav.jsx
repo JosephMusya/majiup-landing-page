@@ -8,8 +8,11 @@ import { LuClock3 } from "react-icons/lu";
 import { MdDoneAll } from "react-icons/md";
 import { HashRouter } from "react-router-dom";
 import { FaTruckDroplet } from "react-icons/fa6";
+import { logoutUser } from "../navbar/Navbar";
+import { useUserContext } from "../../providers/UserProvider";
 
 export default function SideNav() {
+  const { profile, loadingUser } = useUserContext();
   const iconSize = 24;
   return (
     <div
@@ -58,7 +61,7 @@ export default function SideNav() {
           <FaTruckDroplet size={iconSize} color="#fff" />
         </div>
         <Link to="trucks" className="link">
-          MY TRUCKS
+          MY WATER TRUCK
         </Link>
       </div>
       <div className="link-div">
@@ -84,12 +87,16 @@ export default function SideNav() {
           </div>
         </Link>
         <div>
-          <Link to="profile/1" className="link">
-            <h2 style={{ fontWeight: "bold" }}>Josee Mie</h2>
-          </Link>
-          <Link to="/" className="link">
+          {loadingUser ? (
+            <article className="link">----</article>
+          ) : (
+            <Link to="profile/1" className="link">
+              <h2 style={{ fontWeight: "bold" }}>{profile?.name}</h2>
+            </Link>
+          )}
+          <article onClick={logoutUser} className="link">
             LOGOUT
-          </Link>
+          </article>
         </div>
       </div>
     </div>
