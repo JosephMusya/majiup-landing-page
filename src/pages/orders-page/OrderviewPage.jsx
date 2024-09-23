@@ -11,82 +11,138 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import Status from "../../components/status/Status";
 import { useParams } from "react-router-dom";
 import { FaRegCommentDots } from "react-icons/fa6";
+import { useState } from "react";
+import supabase from "../../config/supabaseConfig";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+import { timeAgo } from "../../utils/helpers/timeAgo";
 
 export default function OrderViewPage() {
   const iSize = 28;
   const { id } = useParams();
 
+  const [loading, setLoading] = useState(true);
+  const [order, setOrder] = useState();
+
+  const getOrder = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("refills")
+        .select(
+          `*,
+          owner(phone, name, email)
+          `
+        )
+        .eq("id", id)
+        .single();
+
+      if (data) {
+        setOrder(data);
+        console.log(data);
+      } else if (error) {
+        throw new Error(error.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getOrder();
+  }, [id]);
+
   return (
     <div className="header-section" style={{ paddingTop: "1rem" }}>
-      <div
-        className="refill-content"
-        style={{ boxShadow: "none", border: "none" }}
-      >
-        <Status status="In Progress" top={"0%"} right={"0%"} />
-        <div className="heading">
-          <h1>Samtig Wong</h1>
-          <small>2 Days ago</small>
-        </div>
-        <div className="flex-row">
-          <FaRegClock size={iSize} color="#0072bb" />
-          <h2>Delivery in {1} hour</h2>
-        </div>
-        <div className="loc-card">
-          <MdLocationOn color="red" size={30} />
-          <h2>Kilimani</h2>
-        </div>
-        <section className="cards">
-          <DashCard
-            description="Liters Requested"
-            number={4000}
-            unit="Ltrs"
-            icon={<MdWaterDrop size={iSize} color="#fff" />}
-          />
-          <DashCard
-            description="Total Water Cost"
-            number={3800}
-            unit="Ksh"
-            icon={<RiMoneyDollarCircleLine size={iSize} color="#fff" />}
-          />
-        </section>
-        <div>
-          <div>
-            <p className="to-vendor">
-              Allocated to
-              <span style={{ cursor: "pointer" }} className="v-card">
-                Prius Jon
-              </span>
-            </p>
-          </div>
-        </div>
+      {loading ? (
+        <p>Loading</p>
+      ) : order ? (
         <div
+          className="refill-content"
           style={{
-            display: "flex",
-            gap: "2px !important",
-            flexDirection: "column",
+            boxShadow: "none",
+            border: "none",
+            gap: "0.8rem !important",
           }}
         >
-          <div>
-            <FaRegCommentDots size={30} color="#0072bb" />
+          <Status status={order?.status} top={"0%"} right={"0%"} />
+          <div className="heading">
+            <h1>{order?.owner.name}</h1>
+            <small>{timeAgo(order?.created_at)}</small>
           </div>
-          <article>Comments here</article>
-        </div>
+          <div className="flex-row">
+            <FaRegClock size={iSize} color="#0072bb" />
+            <h2>Delivery in {1} hour</h2>
+          </div>
+          <div className="loc-card">
+            <MdLocationOn color="red" size={30} />
+            <h2>{order?.town}</h2>
+          </div>
+          <div>
+            <article>{order?.water_type} water request</article>
+          </div>
+          <section className="cards">
+            <DashCard
+              description="Liters Requested"
+              number={order?.amount_liters}
+              unit="Ltrs"
+              icon={<MdWaterDrop size={iSize} color="#fff" />}
+            />
+            {order?.amount_ksh && (
+              <DashCard
+                description="Total Water Cost"
+                number={order.amount_ksh}
+                unit="Ksh"
+                icon={<RiMoneyDollarCircleLine size={iSize} color="#fff" />}
+              />
+            )}
+          </section>
+          <div>
+            {order?.truck ? (
+              <div>
+                <p className="to-vendor">
+                  Allocated to
+                  <span style={{ cursor: "pointer" }} className="v-card">
+                    Prius Jon
+                  </span>
+                </p>
+              </div>
+            ) : (
+              <p>Finding the best water trucker for you...</p>
+            )}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              gap: "2px !important",
+              flexDirection: "column",
+            }}
+          >
+            <div>
+              <FaRegCommentDots size={30} color="#0072bb" />
+            </div>
+            <article>{order?.comment}</article>
+          </div>
 
-        <div className="actions">
-          <button>
-            {/* <span>
+          <div className="actions">
+            <button
+              style={{
+                backgroundColor: "red",
+                minWidth: "15rem",
+                // width: "100%",
+              }}
+            >
+              {/* <span>
               <BiSolidShare size={iSize} />
             </span> */}
-            Share Details
-          </button>
-          <button>
-            {/* <span>
-              <IoAlertSharp size={iSize} />
-            </span> */}
-            Update
-          </button>
+              Cancel Order
+            </button>
+          </div>
         </div>
-      </div>
+      ) : (
+        <p>Error occured</p>
+      )}
     </div>
   );
 }

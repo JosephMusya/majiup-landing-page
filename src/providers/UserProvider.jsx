@@ -12,7 +12,6 @@ export const UserProvider = (props) => {
   const [loadingUser, setLoadingUser] = useState(true);
 
   const authChange = () => {
-    console.log("Loading auth user");
     supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN") {
         setAuthUser(session.user);
@@ -25,7 +24,6 @@ export const UserProvider = (props) => {
   };
 
   const getUserProfile = async (authUser) => {
-    console.log("Getting user profile for ", authUser?.id);
     try {
       const { data: profile, error } = await supabase
         .from("profiles")
@@ -39,6 +37,7 @@ export const UserProvider = (props) => {
     } catch (error) {
       console.error(error);
     } finally {
+      setLoadingUser(false);
     }
   };
 
@@ -54,7 +53,7 @@ export const UserProvider = (props) => {
         getUserProfile(user);
       }
     } finally {
-      setLoadingUser(false);
+      // setLoadingUser(false);
     }
   };
 

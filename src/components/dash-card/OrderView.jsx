@@ -53,20 +53,6 @@ export default function OrderView({ onClick }) {
             </p>
           </div>
         </div>
-        <div className="actions">
-          <button>
-            {/* <span>
-              <BiSolidShare size={iSize} />
-            </span> */}
-            Share Details
-          </button>
-          <button>
-            {/* <span>
-              <IoAlertSharp size={iSize} />
-            </span> */}
-            Update
-          </button>
-        </div>
       </div>
     </div>
   );
