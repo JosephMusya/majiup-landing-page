@@ -76,7 +76,10 @@ export default function Trucks() {
                   truck={truck}
                   key={key}
                   navigate={navigate}
-                  removeTruck={() => removeTruck(truck.id)}
+                  removeTruck={() => {
+                    // alert("Are you sure you want to remove this vehicle")
+                    removeTruck(truck.id);
+                  }}
                 />
               );
             })}

@@ -9,7 +9,10 @@ const DashCard = ({ icon, number, description, unit, onClick }) => {
     >
       <section>
         <h1 className="orders-heading">
-          {number.toLocaleString()} {unit}
+          {typeof number === "string"
+            ? number
+            : typeof number === "number" && number.toLocaleString()}{" "}
+          {unit}
         </h1>
         <article className="desc">{description}</article>
       </section>

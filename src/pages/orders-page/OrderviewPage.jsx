@@ -16,8 +16,11 @@ import supabase from "../../config/supabaseConfig";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { timeAgo } from "../../utils/helpers/timeAgo";
+import { useUserContext } from "../../providers/UserProvider";
+import DriverCard from "../../components/card-drivers/DriverCard";
 
 export default function OrderViewPage() {
+  const { profile } = useUserContext();
   const iSize = 28;
   const { id } = useParams();
 
@@ -30,7 +33,8 @@ export default function OrderViewPage() {
         .from("refills")
         .select(
           `*,
-          owner(phone, name, email)
+          owner(phone, name, email),
+          truck("*", owner(phone,name,email))
           `
         )
         .eq("id", id)
@@ -89,29 +93,30 @@ export default function OrderViewPage() {
               unit="Ltrs"
               icon={<MdWaterDrop size={iSize} color="#fff" />}
             />
-            {order?.amount_ksh && (
+            {order && (
               <DashCard
                 description="Total Water Cost"
-                number={order.amount_ksh}
+                number={order.amount_ksh ?? 3800}
                 unit="Ksh"
                 icon={<RiMoneyDollarCircleLine size={iSize} color="#fff" />}
               />
             )}
           </section>
-          <div>
-            {order?.truck ? (
-              <div>
-                <p className="to-vendor">
-                  Allocated to
-                  <span style={{ cursor: "pointer" }} className="v-card">
-                    Prius Jon
-                  </span>
-                </p>
-              </div>
-            ) : (
+
+          {order?.truck ? (
+            <div
+              style={{
+                width: "24rem",
+              }}
+            >
+              <DriverCard truck={order?.truck} />
+            </div>
+          ) : (
+            profile?.user_type === "client" && (
               <p>Finding the best water trucker for you...</p>
-            )}
-          </div>
+            )
+          )}
+
           <div
             style={{
               display: "flex",

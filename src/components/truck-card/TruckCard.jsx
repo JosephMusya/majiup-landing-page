@@ -5,9 +5,6 @@ import { SiBookmeter } from "react-icons/si";
 import { LuClock3 } from "react-icons/lu";
 import { LiaIdCardSolid } from "react-icons/lia";
 import { timeAgo } from "../../utils/helpers/timeAgo";
-import { MdLocationOn } from "react-icons/md";
-import supabase from "../../config/supabaseConfig";
-import toast from "react-hot-toast";
 
 export default function TruckCard({ truck, navigate, removeTruck }) {
   return (

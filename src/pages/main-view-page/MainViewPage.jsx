@@ -8,14 +8,60 @@ import FloatingButton from "../../components/floating-button/FloatingButton";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useUserContext } from "../../providers/UserProvider";
+import { useOrderContext } from "../../providers/OrderProvider";
+import supabase from "../../config/supabaseConfig";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function MainViewPage() {
   const { profile, loadingUser } = useUserContext();
+  const { ordersCount, loadingOrders } = useOrderContext();
+  const [loadingLastOrder, setLoadingLastOrder] = useState(true);
+  const [prevOrder, setPreviousOrder] = useState();
+
   const iconSize = 40;
   const navigate = useNavigate();
 
   document.title = "Dashboard";
-  console.log(profile);
+
+  const getLastOrder = async () => {
+    try {
+      let query = supabase
+        .from("refills")
+        .select(
+          `*, 
+        owner(phone, name, email),
+        truck(*)
+        `
+        )
+        .order("created_at", {
+          ascending: false,
+        });
+
+      if (profile?.user_type === "client") {
+        query = query.eq("owner", profile?.id);
+      } else if (profile?.user_type === "trucker") {
+        query = query.eq("truck.owner", profile?.id);
+      }
+
+      setLoadingLastOrder(true);
+      const { data, error } = await query.limit(1).single();
+
+      if (data) {
+        setPreviousOrder(data);
+      } else if (error) {
+        throw new Error(error.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setLoadingLastOrder(false);
+    }
+  };
+
+  useEffect(() => {
+    profile && getLastOrder();
+  }, [profile]);
 
   return loadingUser ? (
     <p>Loading user</p>
@@ -33,19 +79,21 @@ export default function MainViewPage() {
       )}
       <div className="dashboard-cards">
         <DashCard
-          number={3}
-          description="Requests in progress"
+          number={loadingOrders ? "---" : ordersCount.inProgress}
+          description={`Order${
+            ordersCount.inProgress > 1 ? "s" : ""
+          } in progress`}
           icon={<FaTruckDroplet size={iconSize} color="#fff" />}
           onClick={() => navigate("in-progress")}
         />
         <DashCard
-          number={6}
-          description="Completed requests"
+          number={loadingOrders ? "---" : ordersCount.completed}
+          description="Completed orders"
           icon={<IoMdCheckmark size={iconSize} color="#fff" />}
           onClick={() => navigate("completed")}
         />
         <DashCard
-          number={340588}
+          number={loadingOrders ? "---" : ordersCount.totalLiters}
           unit="Ltrs"
           description={`Liters ${
             profile.user_type === "client"
@@ -55,8 +103,20 @@ export default function MainViewPage() {
           icon={<FaHandHoldingWater size={iconSize} color="#fff" />}
         />
       </div>
-      <h1>Recent Orders</h1>
-      <OrderView onClick={() => navigate("order/9")} />
+      <div className="flex-column">
+        <h2>Recent Orders</h2>
+        {loadingLastOrder ? (
+          <p>Loading previous order</p>
+        ) : prevOrder ? (
+          <OrderView
+            onClick={() => navigate(`order/${prevOrder.id}`)}
+            order={prevOrder}
+            profile={profile}
+          />
+        ) : (
+          <p>No orders found</p>
+        )}
+      </div>
       {profile.user_type === "client" && (
         <FloatingButton to="../create-order" title="Create order" />
       )}

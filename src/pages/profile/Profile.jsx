@@ -5,8 +5,10 @@ import { MdVerified } from "react-icons/md";
 import { FaHandHoldingWater } from "react-icons/fa";
 import { useUserContext } from "../../providers/UserProvider";
 import { timeAgo } from "../../utils/helpers/timeAgo";
+import { useOrderContext } from "../../providers/OrderProvider";
 export default function Profile() {
   const { authUser, profile, loadingUser } = useUserContext();
+  const { ordersCount, loadingOrders } = useOrderContext();
 
   const profileElementStyle = {
     display: "flex",
@@ -20,7 +22,9 @@ export default function Profile() {
   };
   const iconSize = 40;
 
-  return (
+  return loadingUser ? (
+    <p>Loading...</p>
+  ) : profile && !loadingUser ? (
     <div style={{ maxWidth: "920px" }}>
       <div className="flex-row" style={{ justifyContent: "space-between" }}>
         <div className="flex-column" style={{ gap: "0.5rem" }}>
@@ -73,14 +77,18 @@ export default function Profile() {
       </div>
       <div className="dashboard-cards" style={{ paddingTop: "2rem" }}>
         <DashCard
-          number={10}
-          description="Orders Placed"
+          number={loadingOrders ? "---" : ordersCount.total}
+          description={`Order${ordersCount.total > 1 ? "s" : ""} ${
+            profile.user_type === "client" ? "Placed" : "Delivered"
+          }`}
           icon={<FaTruckDroplet size={iconSize} color="#fff" />}
         />
         <DashCard
-          number={340588}
+          number={loadingOrders ? "---" : ordersCount.totalLiters}
           unit="Ltrs"
-          description="Liters Ordered"
+          description={`Liters  ${
+            profile.user_type === "client" ? "Ordered" : "Supplied"
+          }`}
           icon={<FaHandHoldingWater size={iconSize} color="#fff" />}
         />
       </div>
@@ -117,5 +125,7 @@ export default function Profile() {
         </div>
       </div>
     </div>
+  ) : (
+    <p>Error loading your profile</p>
   );
 }

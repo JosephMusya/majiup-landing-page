@@ -51,6 +51,8 @@ export const UserProvider = (props) => {
 
       if (user) {
         getUserProfile(user);
+      } else {
+        setLoadingUser(false);
       }
     } finally {
       // setLoadingUser(false);

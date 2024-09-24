@@ -56,14 +56,16 @@ export default function SideNav() {
           CANCELLED
         </Link>
       </div>
-      <div className="link-div">
-        <div>
-          <FaTruckDroplet size={iconSize} color="#fff" />
+      {profile?.user_type === "trucker" && (
+        <div className="link-div">
+          <div>
+            <FaTruckDroplet size={iconSize} color="#fff" />
+          </div>
+          <Link to="trucks" className="link">
+            MY WATER TRUCK
+          </Link>
         </div>
-        <Link to="trucks" className="link">
-          MY WATER TRUCK
-        </Link>
-      </div>
+      )}
       <div className="link-div">
         <div>
           <MdOutlineNotifications size={iconSize} color="#fff" />

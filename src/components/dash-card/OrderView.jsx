@@ -10,8 +10,9 @@ import { IoAlertSharp } from "react-icons/io5";
 import { MdWaterDrop } from "react-icons/md";
 import Status from "../status/Status";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { timeAgo } from "../../utils/helpers/timeAgo";
 
-export default function OrderView({ onClick }) {
+export default function OrderView({ onClick, order, profile }) {
   const iSize = 28;
 
   return (
@@ -19,40 +20,43 @@ export default function OrderView({ onClick }) {
       <div className="refill-content">
         <Status status="In Progress" />
         <div className="heading">
-          <h1>Owner Me</h1>
-          <small>2 Days ago</small>
+          {profile.user_type === "client" ? (
+            <h2>{order.owner.name}</h2>
+          ) : (
+            <h2>Delivery to {order.owner.name}</h2>
+          )}
+          <small>{timeAgo(order.created_at)}</small>
         </div>
-        {/* <div>
-          <h2>{refill.tank_name}</h2>
-        </div> */}
         <div className="loc-card">
           <MdLocationOn color="red" size={30} />
-          <h2>Kilimani</h2>
+          <h2>{order.town}</h2>
         </div>
         <section className="cards">
           <DashCard
             description="Liters Requested"
-            number={4000}
+            number={order.amount_liters}
             unit=" Ltrs"
             icon={<MdWaterDrop size={iSize} color="#fff" />}
           />
           <DashCard
             description="Total Water Cost"
-            number={3800}
+            number={order.amount_ksh ?? 3800}
             unit="Ksh"
             icon={<RiMoneyDollarCircleLine size={iSize} color="#fff" />}
           />
         </section>
-        <div>
+        {profile.user_type === "client" && (
           <div>
-            <p className="to-vendor">
-              Allocated to
-              <span style={{ cursor: "pointer" }} className="v-card">
-                Prius Jon
-              </span>
-            </p>
+            <div>
+              <p className="to-vendor">
+                Allocated to
+                <span style={{ cursor: "pointer" }} className="v-card">
+                  Prius Jon
+                </span>
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

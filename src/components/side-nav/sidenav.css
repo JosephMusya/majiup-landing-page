@@ -13,14 +13,28 @@
   /* justify-content: center; */
   display: flex;
   cursor: pointer;
+  font-size: larger;
+  letter-spacing: 1px;
 }
 
 .link-div {
-  padding: 0.5rem;
+  padding: 0.8rem;
   cursor: pointer;
   display: flex;
   gap: 1rem;
   align-items: center;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.link-div:hover {
+  background-color: #f4f4f4;
+}
+
+.link-div:hover *,
+.link-div:hover .link {
+  color: var(--secondary-color);
+  font-weight: bold;
 }
 
 .link-div * {

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import supabase from "../config/supabaseConfig";
+import toast from "react-hot-toast";
 
 export const OrderContext = createContext();
 
@@ -56,15 +57,34 @@ export const OrderProvider = (props) => {
         .select("*, truck(owner)", { count: "exact" })
         .eq(`${filter.key.toString()}`, profile?.id);
 
+      // const { data: totalLitersOrders, error } = await supabase
+      //   .from("refills")
+      //   .select("amount_liters, truck(owner)", { count: "exact" })
+      //   .eq(`${filter.key.toString()}`, profile?.id);
+
       const { data: totalLitersOrders, error } = await supabase
         .from("refills")
-        .select("*, truck(owner)", { count: "exact" })
-        .select("amount_liters");
-      // .eq(`${filter.key.toString()}`, profile?.id);
+        .select("amount_liters, truck(owner)", { count: "exact" })
+        .eq(`${filter.key.toString()}`, profile?.id);
 
-      const totalLiters = totalLitersOrders.reduce(
-        (total, row) => total + row.amount_liters
-      );
+      let totalLiters = 0;
+      if (error) {
+        // console.error("Error fetching data:", error);
+        toast.error("Some error occured");
+      } else if (totalLitersOrders?.length > 0) {
+        // Sum the amount_liters
+        totalLiters = totalLitersOrders.reduce(
+          (total, row) => total + (row.amount_liters || 0), // Handle possible null or undefined values
+          0 // Initial value for total
+        );
+      } else {
+        console.log("No records found");
+      }
+
+      // console.log(totalLitersOrders);
+      // const totalLiters = totalLitersOrders.reduce(
+      //   (total, row) => total + row.amount_liters
+      // );
 
       // console.log({ completed, inProgress, cancelled });
       setOrdersCount({
@@ -72,7 +92,7 @@ export const OrderProvider = (props) => {
         completed: completed,
         cancelled: cancelled,
         total: total,
-        totalLiters: totalLiters.amount_liters,
+        totalLiters: totalLiters,
       });
 
       if (completedErr) {

@@ -5,11 +5,14 @@ import "./index.css";
 import { HashRouter, BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./providers/UserProvider.jsx";
 import toast, { Toaster } from "react-hot-toast";
+import { OrderProvider } from "./providers/OrderProvider.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <HashRouter>
     <UserProvider>
-      <App />
-      <Toaster />
+      <OrderProvider>
+        <App />
+        <Toaster />
+      </OrderProvider>
     </UserProvider>
   </HashRouter>
 );
