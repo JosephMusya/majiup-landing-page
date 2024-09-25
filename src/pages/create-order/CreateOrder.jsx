@@ -39,7 +39,7 @@ export default function CreateOrder() {
   };
 
   const getAddressFromCoordinates = async (latitude, longitude) => {
-    const apiKey = "AIzaSyDN_5b-GvaIg8Lz1hQDefK3kavuFdb7B3w"; // Replace with your Google Maps API key
+    const apiKey = ""; // Replace with your Google Maps API key
     const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
     console.log(location);
 
