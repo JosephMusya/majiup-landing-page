@@ -45,8 +45,7 @@ const Step2 = ({ type, handleNextStep }) => {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [userType, setType] = useState(type);
-
-  console.log(userType);
+  const [area, setArea] = useState("");
 
   const registerUser = async (e) => {
     e.preventDefault();
@@ -64,6 +63,7 @@ const Step2 = ({ type, handleNextStep }) => {
             name: name,
             phone: phone,
             user_type: userType,
+            town: area ?? "",
           },
         },
       });
@@ -130,6 +130,19 @@ const Step2 = ({ type, handleNextStep }) => {
               required
             />
           </div>
+          {type === "trucker" && (
+            <div className="login-input">
+              <label htmlFor="phone">Main Area of Operation</label>
+              <input
+                id="area"
+                type="text"
+                placeholder="Which is your main location of work?"
+                onChange={(text) => setArea(text.target.value)}
+                required
+              />
+            </div>
+          )}
+
           {/* <div className="login-input">
         <label htmlFor="user">User Type</label>
         <select name="user" id="user">

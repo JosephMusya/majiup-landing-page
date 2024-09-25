@@ -14,6 +14,7 @@ import { useUserContext } from "../../providers/UserProvider";
 export default function SideNav() {
   const { profile, loadingUser } = useUserContext();
   const iconSize = 24;
+
   return (
     <div
       className="side-nav"
@@ -93,7 +94,7 @@ export default function SideNav() {
             <article className="link">----</article>
           ) : (
             <Link to="profile/1" className="link">
-              <h2 style={{ fontWeight: "bold" }}>{profile?.name}</h2>
+              <h3 style={{ fontWeight: "bold" }}>{profile?.name}</h3>
             </Link>
           )}
           <article onClick={logoutUser} className="link">

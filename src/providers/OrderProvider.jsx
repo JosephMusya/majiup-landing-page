@@ -39,23 +39,32 @@ export const OrderProvider = (props) => {
         .from("refills")
         .select("*, truck(owner)", { count: "exact" })
         .eq("status", "Completed")
-        .eq(`${filter.key.toString()}`, profile?.id);
+        .eq(`${filter.key.toString()}`, profile?.id)
+        .not("truck", "is", null);
 
-      const { count: inProgress, error: progressErr } = await supabase
+      let progressQ = supabase
         .from("refills")
         .select("*, truck(owner)", { count: "exact" })
         .eq("status", "In Progress")
         .eq(`${filter.key.toString()}`, profile?.id);
 
+      if (profile?.user_type === "trucker") {
+        progressQ = progressQ.not("truck", "is", null);
+      }
+
+      const { count: inProgress, error: progressErr, data } = await progressQ;
+
       const { count: cancelled, error: cancelledErr } = await supabase
         .from("refills")
         .select("*, truck(owner)", { count: "exact" })
-        .eq("status", "Cancelled");
+        .eq("status", "Cancelled")
+        .not("truck", "is", null);
 
       const { count: total, error: totalError } = await supabase
         .from("refills")
         .select("*, truck(owner)", { count: "exact" })
-        .eq(`${filter.key.toString()}`, profile?.id);
+        .eq(`${filter.key.toString()}`, profile?.id)
+        .not("truck", "is", null);
 
       // const { data: totalLitersOrders, error } = await supabase
       //   .from("refills")
@@ -65,7 +74,8 @@ export const OrderProvider = (props) => {
       const { data: totalLitersOrders, error } = await supabase
         .from("refills")
         .select("amount_liters, truck(owner)", { count: "exact" })
-        .eq(`${filter.key.toString()}`, profile?.id);
+        .eq(`${filter.key.toString()}`, profile?.id)
+        .not("truck", "is", null);
 
       let totalLiters = 0;
       if (error) {

@@ -6,6 +6,8 @@ import { FaHandHoldingWater } from "react-icons/fa";
 import { useUserContext } from "../../providers/UserProvider";
 import { timeAgo } from "../../utils/helpers/timeAgo";
 import { useOrderContext } from "../../providers/OrderProvider";
+import { MdModeEdit } from "react-icons/md";
+
 export default function Profile() {
   const { authUser, profile, loadingUser } = useUserContext();
   const { ordersCount, loadingOrders } = useOrderContext();
@@ -20,7 +22,10 @@ export default function Profile() {
   const profileTitle = {
     fontWeight: "bold",
   };
+
   const iconSize = 40;
+
+  // console.log();
 
   return loadingUser ? (
     <p>Loading...</p>
@@ -64,13 +69,18 @@ export default function Profile() {
           }}
         >
           <button
+            className="flex-row"
             style={{
               backgroundColor: "#F4F4F4",
               color: "#000",
               borderRadius: "2rem",
-              padding: "0.6rem 0.9rem",
+              padding: "0.8rem 1rem",
+              alignItems: "center",
             }}
           >
+            <span>
+              <MdModeEdit size={22} />
+            </span>
             Update Profile
           </button>
         </div>
@@ -92,6 +102,31 @@ export default function Profile() {
           icon={<FaHandHoldingWater size={iconSize} color="#fff" />}
         />
       </div>
+      {!authUser.user_metadata.phone_verified && (
+        <div
+          style={{
+            // display: "flex",
+            alignSelf: "flex-start",
+            width: "50%",
+            marginTop: "2rem",
+          }}
+        >
+          <p style={{ color: "#333333" }}>
+            We need to verify your phone number
+          </p>
+          <button
+            style={{
+              backgroundColor: "#f6f6f6",
+              backgroundColor: " #0072bb",
+              color: "#fff",
+              borderRadius: "2rem",
+              padding: "0.8rem 1rem",
+            }}
+          >
+            Verify Now
+          </button>
+        </div>
+      )}
       <div style={{ paddingTop: "2rem" }}>
         <section
           style={{
@@ -107,10 +142,12 @@ export default function Profile() {
           <article style={profileTitle}>Name</article>
           <article>{profile?.name}</article>
         </div>
-        <div style={profileElementStyle}>
-          <article style={profileTitle}>Area of Operartion</article>
-          <article>{profile?.town}</article>
-        </div>
+        {profile.user_type === "trucker" && (
+          <div style={profileElementStyle}>
+            <article style={profileTitle}>Area of Operartion</article>
+            <article>{profile?.town}</article>
+          </div>
+        )}
         <div style={profileElementStyle}>
           <article style={profileTitle}>Phone</article>
           <article>+{profile?.phone}</article>

@@ -21,40 +21,44 @@ export default function OrderView({ onClick, order, profile }) {
         <Status status="In Progress" />
         <div className="heading">
           {profile.user_type === "client" ? (
-            <h2>{order.owner.name}</h2>
+            <h2>{order?.owner.name}</h2>
           ) : (
-            <h2>Delivery to {order.owner.name}</h2>
+            <h2>Delivery to {order?.owner.name}</h2>
           )}
-          <small>{timeAgo(order.created_at)}</small>
+          <small>{timeAgo(order?.created_at)} ago</small>
         </div>
         <div className="loc-card">
           <MdLocationOn color="red" size={30} />
-          <h2>{order.town}</h2>
+          <h2>{order?.town}</h2>
         </div>
         <section className="cards">
           <DashCard
             description="Liters Requested"
-            number={order.amount_liters}
+            number={order?.amount_liters}
             unit=" Ltrs"
             icon={<MdWaterDrop size={iSize} color="#fff" />}
           />
           <DashCard
             description="Total Water Cost"
-            number={order.amount_ksh ?? 3800}
+            number={order?.amount_ksh ?? 3800}
             unit="Ksh"
             icon={<RiMoneyDollarCircleLine size={iSize} color="#fff" />}
           />
         </section>
         {profile.user_type === "client" && (
           <div>
-            <div>
-              <p className="to-vendor">
-                Allocated to
-                <span style={{ cursor: "pointer" }} className="v-card">
-                  Prius Jon
-                </span>
-              </p>
-            </div>
+            {order?.truck ? (
+              <div>
+                <p className="to-vendor">
+                  Allocated to
+                  <span style={{ cursor: "pointer" }} className="v-card">
+                    {order?.truck?.driver_name}
+                  </span>
+                </p>
+              </div>
+            ) : (
+              <p>Finding best water trucker for you ...</p>
+            )}
           </div>
         )}
       </div>

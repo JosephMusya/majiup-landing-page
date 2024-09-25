@@ -9,7 +9,7 @@ import { timeAgo } from "../../utils/helpers/timeAgo";
 export default function TruckCard({ truck, navigate, removeTruck }) {
   return (
     <div className="vendor-details" popovertarget="truck-details">
-      <div style={{ padding: "0.8rem" }}>
+      <div className="flex-column" style={{ padding: "0.8rem", gap: "0.5rem" }}>
         <article>
           <div className="header">
             <IoPersonOutline className="disp-icon" />
@@ -22,7 +22,7 @@ export default function TruckCard({ truck, navigate, removeTruck }) {
         <article>
           <div className="header">
             <PiArrowsCounterClockwise className="disp-icon" />
-            <span>Orders completed</span>
+            <span>Orders Delivered</span>
           </div>
 
           <span>{2}</span>

@@ -113,28 +113,30 @@ export default function OrderViewPage() {
             </div>
           ) : (
             profile?.user_type === "client" && (
-              <p>Finding the best water trucker for you...</p>
+              <p>Finding the best water trucker for you ...</p>
             )
           )}
-
-          <div
-            style={{
-              display: "flex",
-              gap: "2px !important",
-              flexDirection: "column",
-            }}
-          >
-            <div>
-              <FaRegCommentDots size={30} color="#0072bb" />
+          {order?.comment && (
+            <div
+              style={{
+                display: "flex",
+                gap: "2px !important",
+                flexDirection: "column",
+              }}
+            >
+              <div>
+                <FaRegCommentDots size={30} color="#0072bb" />
+              </div>
+              <article>{order?.comment}</article>
             </div>
-            <article>{order?.comment}</article>
-          </div>
+          )}
 
           <div className="actions">
             <button
               style={{
-                backgroundColor: "red",
+                backgroundColor: "#f4f4f4",
                 minWidth: "15rem",
+                color: "#000",
                 // width: "100%",
               }}
             >
@@ -142,6 +144,14 @@ export default function OrderViewPage() {
               <BiSolidShare size={iSize} />
             </span> */}
               Cancel Order
+            </button>
+            <button
+              style={{
+                // backgroundColor: "red",
+                minWidth: "15rem",
+              }}
+            >
+              Complete Order
             </button>
           </div>
         </div>

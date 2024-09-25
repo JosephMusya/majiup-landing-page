@@ -41,11 +41,12 @@ export default function MainViewPage() {
       if (profile?.user_type === "client") {
         query = query.eq("owner", profile?.id);
       } else if (profile?.user_type === "trucker") {
-        query = query.eq("truck.owner", profile?.id);
+        query = query.eq("truck.owner", profile?.id).not("truck", "is", null);
       }
 
       setLoadingLastOrder(true);
       const { data, error } = await query.limit(1).single();
+      console.log(data);
 
       if (data) {
         setPreviousOrder(data);

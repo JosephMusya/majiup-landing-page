@@ -48,3 +48,36 @@
   border-radius: 0.2rem;
   color: var(--text-color) !important;
 } */
+
+@media screen and (max-width: 1473) {
+  /* .items {
+        padding: 0 0.8rem;
+    }     */
+}
+
+@media screen and (max-width: 992px) {
+  /* .link {
+    display: none;
+  }
+
+  .side-nav {
+    max-width: fit-content;
+  } */
+  /* .items {
+        padding: 0 0.8rem;
+    }     */
+}
+
+/* Tablet Size */
+@media screen and (max-width: 768px) {
+  .items {
+    padding: 0 0.6rem;
+  }
+}
+
+/* Small Size */
+@media screen and (max-width: 576px) {
+  .items {
+    padding: 0 0.5rem;
+  }
+}
