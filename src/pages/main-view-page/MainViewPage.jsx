@@ -46,7 +46,6 @@ export default function MainViewPage() {
 
       setLoadingLastOrder(true);
       const { data, error } = await query.limit(1).single();
-      console.log(data);
 
       if (data) {
         setPreviousOrder(data);

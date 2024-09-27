@@ -1,14 +1,8 @@
 import React from "react";
 import "./ordercard.css";
+import { timeAgo } from "../../utils/helpers/timeAgo";
 
-export default function OrderCard({
-  onClick,
-  name,
-  status,
-  quantity,
-  price,
-  time,
-}) {
+export default function OrderCard({ onClick, order }) {
   return (
     <div onClick={onClick} className="order-card" style={{}}>
       <div
@@ -17,13 +11,15 @@ export default function OrderCard({
           justifyContent: "space-between",
         }}
       >
-        <article>Joseph Musya</article>
-        <article>Status</article>
+        <article style={{ fontWeight: "bold" }}>
+          Delivery to {order?.town}
+        </article>
+        <article>{order.status}</article>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <article>3000 Liters</article>
-        <article>Ksh 3500</article>
-        <article>3 Days ago</article>
+        <article>{order?.amount_liters} Liters</article>
+        {order?.water_type && <article>{order?.water_type} water</article>}
+        <article>{timeAgo(order.created_at)} ago</article>
       </div>
     </div>
   );

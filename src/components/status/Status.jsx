@@ -13,6 +13,7 @@ const Status = ({ status, top, right }) => {
           backgroundColor: color,
           borderRadius: "4px",
           padding: "4px 8px",
+          color: status !== "In Progress" && "#fff",
         }}
       >
         {icon}
@@ -33,10 +34,10 @@ const Status = ({ status, top, right }) => {
         <Box color="orange" status={status} icon={<FaRegClock color="" />} />
       )}
       {status === "Completed" && (
-        <Box color="green" status={status} icon={<FaCheck color="" />} />
+        <Box color="green" status={status} icon={<FaCheck color="#fff" />} />
       )}
       {status === "Cancelled" && (
-        <Box color="red" status={status} icon={<RxCross1 color="" />} />
+        <Box color="red" status={status} icon={<RxCross1 color="#fff" />} />
       )}
     </div>
   );

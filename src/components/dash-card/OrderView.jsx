@@ -18,7 +18,7 @@ export default function OrderView({ onClick, order, profile }) {
   return (
     <div onClick={onClick} className="header-section">
       <div className="refill-content">
-        <Status status="In Progress" />
+        <Status status={order?.status} />
         <div className="heading">
           {profile.user_type === "client" ? (
             <h2>{order?.owner.name}</h2>

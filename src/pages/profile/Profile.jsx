@@ -74,7 +74,7 @@ export default function Profile() {
               backgroundColor: "#F4F4F4",
               color: "#000",
               borderRadius: "2rem",
-              padding: "0.8rem 1rem",
+              padding: "0.5rem 1rem",
               alignItems: "center",
             }}
           >
@@ -89,7 +89,9 @@ export default function Profile() {
         <DashCard
           number={loadingOrders ? "---" : ordersCount.total}
           description={`Order${ordersCount.total > 1 ? "s" : ""} ${
-            profile.user_type === "client" ? "Placed" : "Delivered"
+            profile.user_type === "client"
+              ? "Request"
+              : profile.user_type === "trucker" && "Delivered"
           }`}
           icon={<FaTruckDroplet size={iconSize} color="#fff" />}
         />
@@ -97,7 +99,9 @@ export default function Profile() {
           number={loadingOrders ? "---" : ordersCount.totalLiters}
           unit="Ltrs"
           description={`Liters  ${
-            profile.user_type === "client" ? "Ordered" : "Supplied"
+            profile.user_type === "client"
+              ? "Ordered"
+              : profile.user_type === "trucker" && "Supplied"
           }`}
           icon={<FaHandHoldingWater size={iconSize} color="#fff" />}
         />

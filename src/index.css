@@ -48,6 +48,11 @@ body {
   margin: 0;
 }
 
+/* .my-popup {
+  background-color: red !important;
+  border-radius: 5rem;
+} */
+
 ::-webkit-scrollbar {
   width: 5px;
 }

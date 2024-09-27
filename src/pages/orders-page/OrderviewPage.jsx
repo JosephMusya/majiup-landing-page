@@ -18,6 +18,7 @@ import toast from "react-hot-toast";
 import { timeAgo } from "../../utils/helpers/timeAgo";
 import { useUserContext } from "../../providers/UserProvider";
 import DriverCard from "../../components/card-drivers/DriverCard";
+import CustomPopup from "../../components/popup/Popup";
 
 export default function OrderViewPage() {
   const { profile } = useUserContext();
@@ -26,6 +27,36 @@ export default function OrderViewPage() {
 
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState();
+  const [updating, setUpdating] = useState(false);
+
+  const updateOrder = async (status) => {
+    console.log(status);
+
+    try {
+      setUpdating(true);
+      const { data, error } = await supabase
+        .from("refills")
+        .update({ status: status })
+        .eq("id", id)
+        .select("status")
+        .single();
+
+      if (data) {
+        // console.log(data);
+        setOrder((prevOrder) => ({
+          ...prevOrder,
+          status: data.status,
+        }));
+        toast.success("Order updated");
+      } else if (error) {
+        throw new Error(error.message);
+      }
+    } catch (error) {
+      toast.error("Failed to update this order");
+    } finally {
+      setUpdating(false);
+    }
+  };
 
   const getOrder = async () => {
     try {
@@ -42,7 +73,6 @@ export default function OrderViewPage() {
 
       if (data) {
         setOrder(data);
-        console.log(data);
       } else if (error) {
         throw new Error(error.message);
       }
@@ -132,27 +162,51 @@ export default function OrderViewPage() {
           )}
 
           <div className="actions">
-            <button
-              style={{
-                backgroundColor: "#f4f4f4",
-                minWidth: "15rem",
-                color: "#000",
-                // width: "100%",
-              }}
-            >
-              {/* <span>
-              <BiSolidShare size={iSize} />
-            </span> */}
-              Cancel Order
-            </button>
-            <button
-              style={{
-                // backgroundColor: "red",
-                minWidth: "15rem",
-              }}
-            >
-              Complete Order
-            </button>
+            {order?.status === "In Progress" && (
+              <>
+                <CustomPopup
+                  title="Are you sure you want to cancel?"
+                  body="This action will cancel this order."
+                  trigger={
+                    <button
+                      style={{
+                        backgroundColor: "#f4f4f4",
+                        minWidth: "15rem",
+                        color: "#000",
+                      }}
+                    >
+                      Cancel Order
+                    </button>
+                  }
+                  cancelText="back"
+                  confirmText="cancel order"
+                  confirmStyle={{ backgroundColor: "red" }}
+                  onConfirm={() => {
+                    updateOrder("Cancelled");
+                  }}
+                />
+                {order?.truck && (
+                  <CustomPopup
+                    title="Complete order?"
+                    body="Complete order when you have delivered the order."
+                    trigger={
+                      <button
+                        style={{
+                          minWidth: "15rem",
+                        }}
+                      >
+                        Complete Order
+                      </button>
+                    }
+                    cancelText="back"
+                    confirmText={updating ? "Updating..." : "Complete"}
+                    onConfirm={() => {
+                      !updating && updateOrder("Completed");
+                    }}
+                  />
+                )}
+              </>
+            )}
           </div>
         </div>
       ) : (

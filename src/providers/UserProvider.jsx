@@ -61,10 +61,12 @@ export const UserProvider = (props) => {
 
   useEffect(() => {
     authChange();
+
+    return () => {};
   }, []);
 
   useEffect(() => {
-    getUserData();
+    authUser && getUserData();
   }, [authUser]);
 
   return (

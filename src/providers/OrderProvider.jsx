@@ -19,19 +19,19 @@ export const OrderProvider = (props) => {
     totalLiters: 0,
   });
 
+  let filter;
+
+  if (profile?.user_type === "client") {
+    filter = {
+      key: "owner",
+    };
+  } else if (profile?.user_type === "trucker") {
+    filter = {
+      key: "truck.owner",
+    };
+  }
+
   const retriveAllOrders = async () => {
-    let filter;
-
-    if (profile?.user_type === "client") {
-      filter = {
-        key: "owner",
-      };
-    } else if (profile?.user_type === "trucker") {
-      filter = {
-        key: "truck.owner",
-      };
-    }
-
     try {
       setLoadingOrders(true);
 
@@ -58,13 +58,16 @@ export const OrderProvider = (props) => {
         .from("refills")
         .select("*, truck(owner)", { count: "exact" })
         .eq("status", "Cancelled")
+        .eq(`${filter.key.toString()}`, profile?.id)
         .not("truck", "is", null);
 
       const { count: total, error: totalError } = await supabase
         .from("refills")
         .select("*, truck(owner)", { count: "exact" })
         .eq(`${filter.key.toString()}`, profile?.id)
+        .in("status", ["Completed", "In Progress"])
         .not("truck", "is", null);
+      // .not("status", "is", "Cancelled");
 
       // const { data: totalLitersOrders, error } = await supabase
       //   .from("refills")
@@ -75,6 +78,7 @@ export const OrderProvider = (props) => {
         .from("refills")
         .select("amount_liters, truck(owner)", { count: "exact" })
         .eq(`${filter.key.toString()}`, profile?.id)
+        .in("status", ["Completed", "In Progress"])
         .not("truck", "is", null);
 
       let totalLiters = 0;
@@ -126,7 +130,7 @@ export const OrderProvider = (props) => {
   }, [profile]);
 
   return (
-    <OrderContext.Provider value={{ ordersCount, loadingOrders }}>
+    <OrderContext.Provider value={{ ordersCount, loadingOrders, filter }}>
       {props.children}
     </OrderContext.Provider>
   );
