@@ -38,14 +38,16 @@ const Step1 = ({ handleNext, type, setType }) => {
 
 const Step2 = ({ type, handleNextStep }) => {
   const navigate = useNavigate();
+  const [registerCredentials, setRegisterCredentials] = useState({
+    phone: "",
+    email: "",
+    name: "",
+    area: "",
+    password: "",
+    userType: type,
+  });
 
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
-  const [userType, setType] = useState(type);
-  const [area, setArea] = useState("");
 
   const registerUser = async (e) => {
     e.preventDefault();
@@ -56,14 +58,14 @@ const Step2 = ({ type, handleNextStep }) => {
         data: { user, session },
         error,
       } = await supabase.auth.signUp({
-        email: email,
-        password: password,
+        email: registerCredentials?.email,
+        password: registerCredentials?.password,
         options: {
           data: {
-            name: name,
-            phone: phone,
-            user_type: userType,
-            town: area ?? "",
+            name: registerCredentials.name,
+            phone: registerCredentials.phone,
+            user_type: registerCredentials.userType,
+            town: registerCredentials?.area ?? "",
           },
         },
       });
@@ -90,7 +92,16 @@ const Step2 = ({ type, handleNextStep }) => {
 
   return (
     <div className="login" style={{ flexDirection: "column" }}>
-      <form action="" onSubmit={registerUser}>
+      <form
+        action=""
+        onSubmit={(e) => {
+          if (!loading) {
+            registerUser(e);
+          } else {
+            e.preventDefault();
+          }
+        }}
+      >
         <div className="login-box">
           <div className="flex-row" style={{}}>
             <h1 style={{ fontWeight: "bold", lineHeight: 1.2 }}>
@@ -106,7 +117,12 @@ const Step2 = ({ type, handleNextStep }) => {
               id="name"
               type="text"
               placeholder="Full Names"
-              onChange={(name) => setName(name.target.value)}
+              onChange={(name) =>
+                setRegisterCredentials((prev) => ({
+                  ...prev,
+                  name: name.target.value,
+                }))
+              }
               required
             />
           </div>
@@ -116,7 +132,12 @@ const Step2 = ({ type, handleNextStep }) => {
               id="email"
               type="email@example.com"
               placeholder="email"
-              onChange={(text) => setEmail(text.target.value)}
+              onChange={(name) =>
+                setRegisterCredentials((prev) => ({
+                  ...prev,
+                  email: name.target.value,
+                }))
+              }
               required
             />
           </div>
@@ -126,7 +147,12 @@ const Step2 = ({ type, handleNextStep }) => {
               id="phone"
               type="text"
               placeholder="0712345678"
-              onChange={(text) => setPhone(text.target.value)}
+              onChange={(name) =>
+                setRegisterCredentials((prev) => ({
+                  ...prev,
+                  phone: name.target.value,
+                }))
+              }
               required
             />
           </div>
@@ -137,7 +163,12 @@ const Step2 = ({ type, handleNextStep }) => {
                 id="area"
                 type="text"
                 placeholder="Which is your main location of work?"
-                onChange={(text) => setArea(text.target.value)}
+                onChange={(name) =>
+                  setRegisterCredentials((prev) => ({
+                    ...prev,
+                    area: name.target.value,
+                  }))
+                }
                 required
               />
             </div>
@@ -159,7 +190,12 @@ const Step2 = ({ type, handleNextStep }) => {
               id="password"
               type="password"
               placeholder="password"
-              onChange={(text) => setPassword(text.target.value)}
+              onChange={(name) =>
+                setRegisterCredentials((prev) => ({
+                  ...prev,
+                  password: name.target.value,
+                }))
+              }
               required
             />
           </div>

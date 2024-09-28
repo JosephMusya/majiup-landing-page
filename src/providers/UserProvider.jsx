@@ -59,6 +59,15 @@ export const UserProvider = (props) => {
     }
   };
 
+  const updateProfile = (data) => {
+    setProfile((prev) => ({
+      ...prev,
+      name: data?.name,
+      phone: data?.phone,
+      town: data?.town,
+    }));
+  };
+
   useEffect(() => {
     authChange();
 
@@ -66,11 +75,15 @@ export const UserProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    authUser && getUserData();
+    if (authUser && !profile) {
+      getUserData();
+    }
   }, [authUser]);
 
   return (
-    <UserContext.Provider value={{ authUser, loadingUser, profile }}>
+    <UserContext.Provider
+      value={{ authUser, loadingUser, profile, updateProfile }}
+    >
       {props.children}
     </UserContext.Provider>
   );

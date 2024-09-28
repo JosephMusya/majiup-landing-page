@@ -7,10 +7,25 @@ import { useUserContext } from "../../providers/UserProvider";
 import { timeAgo } from "../../utils/helpers/timeAgo";
 import { useOrderContext } from "../../providers/OrderProvider";
 import { MdModeEdit } from "react-icons/md";
+import CustomPopup from "../../components/popup/Popup";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import supabase from "../../config/supabaseConfig";
+import { useEffect } from "react";
 
 export default function Profile() {
-  const { authUser, profile, loadingUser } = useUserContext();
+  const { authUser, profile, loadingUser, updateProfile } = useUserContext();
   const { ordersCount, loadingOrders } = useOrderContext();
+
+  const [submiting, setSubmiting] = useState(false);
+
+  const [editProfile, setEditProfile] = useState({
+    name: "",
+    phone: "",
+    town: "",
+  });
+
+  // console.log(profile);
 
   const profileElementStyle = {
     display: "flex",
@@ -25,6 +40,43 @@ export default function Profile() {
 
   const iconSize = 40;
 
+  const submitProfile = async () => {
+    try {
+      setSubmiting(true);
+      const { data, error } = await supabase
+        .from("profiles")
+        .update({
+          name: editProfile?.name,
+          phone: editProfile?.phone,
+          town: editProfile.town ?? "",
+        })
+        .eq("id", profile?.id)
+        .select("name,phone,town")
+        .single();
+
+      if (data) {
+        updateProfile(data);
+        toast.success("Your profile has been updated!");
+      } else if (error) {
+        throw new Error(error.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+      throw new Error(error.message);
+    } finally {
+      setSubmiting(false);
+    }
+  };
+
+  useEffect(() => {
+    profile &&
+      setEditProfile((prev) => ({
+        ...prev,
+        name: profile?.name,
+        phone: profile?.phone,
+        town: profile?.town,
+      }));
+  }, [profile]);
   // console.log();
 
   return loadingUser ? (
@@ -68,21 +120,83 @@ export default function Profile() {
             justifyContent: "flex-end",
           }}
         >
-          <button
-            className="flex-row"
-            style={{
-              backgroundColor: "#F4F4F4",
-              color: "#000",
-              borderRadius: "2rem",
-              padding: "0.5rem 1rem",
-              alignItems: "center",
-            }}
-          >
-            <span>
-              <MdModeEdit size={22} />
-            </span>
-            Update Profile
-          </button>
+          <CustomPopup
+            trigger={
+              <button
+                className="flex-row"
+                style={{
+                  backgroundColor: "#F4F4F4",
+                  color: "#000",
+                  borderRadius: "2rem",
+                  padding: "0.5rem 1rem",
+                  alignItems: "center",
+                }}
+              >
+                <span>
+                  <MdModeEdit size={22} />
+                </span>
+                Update Profile
+              </button>
+            }
+            closeOnDocumentClick={false}
+            title="Edit Profile"
+            confirmText={submiting ? "submitting..." : "submit"}
+            onConfirm={!submiting && submitProfile}
+            children={
+              <div style={{ paddingBottom: "1rem" }}>
+                <form
+                  className="flex-column"
+                  onSubmit={(e) => e.preventDefault()}
+                  style={{ gap: "0.5rem" }}
+                >
+                  <div className="form-input">
+                    <label htmlFor="name">Name</label>
+                    <input
+                      id="name"
+                      type="text"
+                      defaultValue={profile?.name}
+                      onChange={(text) =>
+                        setEditProfile((prev) => ({
+                          ...prev,
+                          name: text.target.value,
+                        }))
+                      }
+                    />
+                  </div>
+                  <div className="form-input">
+                    <label htmlFor="phone">Phone</label>
+                    <input
+                      id="phone"
+                      type="text"
+                      defaultValue={profile?.phone}
+                      onChange={(text) =>
+                        setEditProfile((prev) => ({
+                          ...prev,
+                          phone: text.target.value,
+                        }))
+                      }
+                    />
+                  </div>
+                  {profile?.user_type === "trucker" && (
+                    <div className="form-input">
+                      <label htmlFor="name">Area of Operation</label>
+                      <input
+                        id="name"
+                        type="text"
+                        defaultValue={profile?.town}
+                        onChange={(text) =>
+                          setEditProfile((prev) => ({
+                            ...prev,
+                            town: text.target.value,
+                          }))
+                        }
+                      />
+                    </div>
+                  )}
+                </form>
+              </div>
+            }
+          />
         </div>
       </div>
       <div className="dashboard-cards" style={{ paddingTop: "2rem" }}>
@@ -115,20 +229,34 @@ export default function Profile() {
             marginTop: "2rem",
           }}
         >
-          <p style={{ color: "#333333" }}>
-            We need to verify your phone number
-          </p>
-          <button
-            style={{
-              backgroundColor: "#f6f6f6",
-              backgroundColor: " #0072bb",
-              color: "#fff",
-              borderRadius: "2rem",
-              padding: "0.8rem 1rem",
-            }}
-          >
-            Verify Now
-          </button>
+          <p>We need to verify your phone number</p>
+          <CustomPopup
+            trigger={
+              <button
+                style={{
+                  backgroundColor: "#f6f6f6",
+                  backgroundColor: " #0072bb",
+                  color: "#fff",
+                  borderRadius: "2rem",
+                  padding: "0.8rem 1rem",
+                }}
+              >
+                Verify Now
+              </button>
+            }
+            title="Submit OTP"
+            body={`An OTP was sent to +${profile?.phone}`}
+            confirmText="submit"
+            children={
+              <div className="form-input" style={{ marginBottom: "1rem" }}>
+                <input
+                  type="text"
+                  placeholder="Enter OTP"
+                  style={{ fontSize: "1.5rem", letterSpacing: "2px" }}
+                />
+              </div>
+            }
+          />
         </div>
       )}
       <div style={{ paddingTop: "2rem" }}>

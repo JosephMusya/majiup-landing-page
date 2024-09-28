@@ -10,23 +10,25 @@ import toast from "react-hot-toast";
 
 export default function Login() {
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [loginCredentials, setLoginCredentials] = useState({
+    email: "",
+    password: "",
+  });
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const loginUser = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+
     try {
       setLoading(true);
       let {
         data: { user, session },
         error,
       } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
+        email: loginCredentials?.email,
+        password: loginCredentials?.password,
       });
       if (user && session) {
         toast.success("Login successful");
@@ -45,7 +47,16 @@ export default function Login() {
 
   return (
     <div style={{ fontWeight: "bold" }} className="login">
-      <form action="" onSubmit={loginUser}>
+      <form
+        action=""
+        onSubmit={(e) => {
+          if (!loading) {
+            loginUser(e);
+          } else {
+            e.preventDefault();
+          }
+        }}
+      >
         <div className="login-box">
           <h1>Welcome Back To Majiup</h1>
           <div className="login-input">
@@ -54,7 +65,12 @@ export default function Login() {
               id="email"
               type="text"
               placeholder="0712345678"
-              onChange={(text) => setEmail(text.target.value)}
+              onChange={(text) =>
+                setLoginCredentials((prev) => ({
+                  ...prev,
+                  email: text.target.value,
+                }))
+              }
               required
             />
           </div>
@@ -64,7 +80,12 @@ export default function Login() {
               id="password"
               type="password"
               placeholder="password"
-              onChange={(text) => setPassword(text.target.value)}
+              onChange={(text) =>
+                setLoginCredentials((prev) => ({
+                  ...prev,
+                  password: text.target.value,
+                }))
+              }
               required
             />
           </div>

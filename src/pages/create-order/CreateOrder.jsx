@@ -188,7 +188,14 @@ export default function CreateOrder() {
             >
               Cancel
             </button>
-            <button onClick={createOrder} className="custom-button">
+            <button
+              onClick={(e) => {
+                if (!submitting) {
+                  createOrder(e);
+                }
+              }}
+              className="custom-button"
+            >
               {submitting ? "Requesting" : "Submit"}
             </button>
           </div>

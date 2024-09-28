@@ -1,50 +1,30 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import supabase from "../../config/supabaseConfig";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useUserContext } from "../../providers/UserProvider";
-import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-function EditTruck() {
-  document.title = "Edit Water Truck";
+function EditTruck({ truck, close, updateTruck }) {
+  const [truckDetails, setTruckDetails] = useState({
+    truckName: "",
+    driverName: "",
+    truckCapacity: 0,
+    town: "",
+    vehicleReg: "",
+  });
 
-  const { id } = useParams();
+  useEffect(() => {
+    truck &&
+      setTruckDetails({
+        truckName: truck?.name,
+        driverName: truck?.driver_name,
+        town: truck?.town,
+        truckCapacity: truck?.truck_capacity,
+        vehicleReg: truck?.vehicle_number,
+      });
+  }, [truck]);
 
-  const navigate = useNavigate();
-  const { authUser } = useUserContext();
-
-  const [truck, setTruck] = useState();
-
-  const [truckName, setTruckName] = useState();
-  const [driverName, setDriverName] = useState();
-  const [truckCapacity, setTruckCapacity] = useState();
-  const [town, setTown] = useState();
-  const [vehicleReg, setVehicleReg] = useState();
-
-  const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
-
-  const getTruck = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("trucks")
-        .select("*")
-        .eq("id", id)
-        .single();
-
-      if (data) {
-        setTruck(data);
-      } else if (error) {
-        throw new Error(error.message);
-      }
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const submitEdits = async (e) => {
     e.preventDefault();
@@ -53,18 +33,19 @@ function EditTruck() {
       const { data, error } = await supabase
         .from("trucks")
         .update({
-          name: truckName,
-          driver_name: driverName,
-          town: town,
-          truck_capacity: truckCapacity,
-          vehicle_number: vehicleReg,
+          name: truckDetails?.truckName,
+          driver_name: truckDetails?.driverName,
+          town: truckDetails?.town,
+          truck_capacity: truckDetails?.truckCapacity,
+          vehicle_number: truckDetails?.vehicleReg,
         })
         .eq("id", truck.id)
-        .select();
+        .select()
+        .single();
       if (data) {
+        updateTruck(data);
         toast.success(`Water truck updated`);
-        // setTrucks((prev) => [...prev, ...data]);
-        navigate(-1);
+        close();
       } else if (error) {
         throw new Error(error.message);
       }
@@ -75,16 +56,10 @@ function EditTruck() {
     }
   };
 
-  useEffect(() => {
-    getTruck();
-  }, []);
-
   return (
     <div>
       <h1 className="orders-heading">Edit Truck</h1>
-      {loading ? (
-        <p>Loading,.</p>
-      ) : (
+      {
         <div style={{ maxWidth: "600px", marginTop: "1rem" }}>
           <form
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
@@ -95,7 +70,12 @@ function EditTruck() {
                 type="text"
                 id="truck"
                 defaultValue={truck?.name}
-                onChange={(text) => setTruckName(text.target.value)}
+                onChange={(text) =>
+                  setTruckDetails((prev) => ({
+                    ...prev,
+                    truckName: text.target.value,
+                  }))
+                }
                 required
               />
             </div>
@@ -104,7 +84,12 @@ function EditTruck() {
               <input
                 type="text"
                 id="driver"
-                onChange={(text) => setDriverName(text.target.value)}
+                onChange={(text) =>
+                  setTruckDetails((prev) => ({
+                    ...prev,
+                    driverName: text.target.value,
+                  }))
+                }
                 defaultValue={truck?.driver_name}
                 required
                 placeholder="Enter driver's name"
@@ -116,7 +101,12 @@ function EditTruck() {
                 type="number"
                 id="capacity"
                 placeholder="example: 10,000 Liters"
-                onChange={(text) => setTruckCapacity(text.target.value)}
+                onChange={(text) =>
+                  setTruckDetails((prev) => ({
+                    ...prev,
+                    truckCapacity: text.target.value,
+                  }))
+                }
                 defaultValue={truck?.truck_capacity}
                 required
               />
@@ -127,7 +117,12 @@ function EditTruck() {
                 type="text"
                 id="town"
                 placeholder="What's the main area of operation"
-                onChange={(text) => setTown(text.target.value)}
+                onChange={(text) =>
+                  setTruckDetails((prev) => ({
+                    ...prev,
+                    town: text.target.value,
+                  }))
+                }
                 defaultValue={truck?.town}
                 required
               />
@@ -139,7 +134,10 @@ function EditTruck() {
                 id="plate_number"
                 placeholder="KXX 123A"
                 onChange={(text) =>
-                  setVehicleReg(text.target.value.toUpperCase())
+                  setTruckDetails((prev) => ({
+                    ...prev,
+                    vehicleReg: text.target.value.toString().toUpperCase(),
+                  }))
                 }
                 defaultValue={truck?.vehicle_number}
                 required
@@ -148,25 +146,27 @@ function EditTruck() {
             </div>
             <div style={{ display: "flex", gap: "1rem" }}>
               <button
+                onClick={close}
                 className="custom-button"
                 style={{ backgroundColor: "gray" }}
-                onClick={() => {
-                  navigate(-1);
-                }}
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 className="custom-button"
-                onClick={!loading && submitEdits}
+                onClick={(e) => {
+                  if (!updating) {
+                    submitEdits(e);
+                  }
+                }}
               >
-                {updating ? "Loading" : "Save Changes"}
+                {updating ? "Saving..." : "Save Changes"}
               </button>
             </div>
           </form>
         </div>
-      )}
+      }
     </div>
   );
 }

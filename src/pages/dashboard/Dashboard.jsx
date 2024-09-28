@@ -50,7 +50,7 @@ export default function Dashboard() {
             <>
               <Route path="/trucks" element={<Trucks />} />
               <Route path="/add-truck" element={<AddTrucks />} />
-              <Route path="/edit-truck/:id" element={<EditTruck />} />
+              {/* <Route path="/edit-truck/:id" element={<EditTruck />} /> */}
             </>
           )}
           {profile?.user_type === "client" && (

@@ -13,17 +13,20 @@ export default function CustomPopup({
   confirmStyle,
   width,
   height,
+  closeOnDocumentClick = true,
+  showActionButtons = true,
 }) {
   return (
     <Popup
       trigger={trigger}
       modal
       nested
-      // closeOnDocumentClick={false}
+      closeOnDocumentClick={closeOnDocumentClick}
       contentStyle={{
         minWidth: "25dvw",
         minHeight: "10rem",
-        width: "fit-content",
+        width: width ?? "fit-content",
+        height: height ?? "fit-content",
         padding: "1rem",
         borderRadius: "0.5rem",
       }}
@@ -42,25 +45,30 @@ export default function CustomPopup({
           <div>
             <h3 style={{ fontWeight: "bold" }}>{title}</h3>
             {body && <p>{body}</p>}
-            {children}
+            {children && React.cloneElement(children, { close })}
+            {/* {children} */}
           </div>
-          <div className="flex-row" style={{ gap: "2rem" }}>
-            <button
-              style={{ backgroundColor: "#f4f4f4", color: "#000" }}
-              onClick={() => close()}
-            >
-              {cancelText.toString().toLocaleUpperCase()}
-            </button>
-            <button
-              style={confirmStyle}
-              onClick={() => {
-                onConfirm();
-                close();
-              }}
-            >
-              {confirmText.toString().toLocaleUpperCase()}
-            </button>
-          </div>
+          {showActionButtons && (
+            <div className="flex-row" style={{ gap: "2rem" }}>
+              <button
+                style={{ backgroundColor: "#f4f4f4", color: "#000" }}
+                onClick={() => close()}
+              >
+                {cancelText.toString().toLocaleUpperCase()}
+              </button>
+              <button
+                style={confirmStyle}
+                onClick={async () => {
+                  try {
+                    await onConfirm();
+                    close();
+                  } catch (error) {}
+                }}
+              >
+                {confirmText.toString().toLocaleUpperCase()}
+              </button>
+            </div>
+          )}
         </div>
       )}
     </Popup>

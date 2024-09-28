@@ -5,8 +5,10 @@ import { SiBookmeter } from "react-icons/si";
 import { LuClock3 } from "react-icons/lu";
 import { LiaIdCardSolid } from "react-icons/lia";
 import { timeAgo } from "../../utils/helpers/timeAgo";
+import CustomPopup from "../popup/Popup";
+import EditTruck from "../../pages/add-truck/EditTruck";
 
-export default function TruckCard({ truck, navigate, removeTruck }) {
+export default function TruckCard({ truck, removeTruck, updateTruck }) {
   return (
     <div className="vendor-details" popovertarget="truck-details">
       <div className="flex-column" style={{ padding: "0.8rem", gap: "0.5rem" }}>
@@ -58,18 +60,30 @@ export default function TruckCard({ truck, navigate, removeTruck }) {
         }}
         className="flex-row"
       >
-        <button
-          onClick={removeTruck}
-          style={{ backgroundColor: "red", minWidth: "40%" }}
+        <CustomPopup
+          trigger={
+            <button style={{ backgroundColor: "red", minWidth: "40%" }}>
+              REMOVE
+            </button>
+          }
+          title={`Remove ${truck?.name}`}
+          body="This action will remove this water truck from your listing!"
+          onConfirm={removeTruck}
+          confirmText="Remove"
+          confirmStyle={{ backgroundColor: "red" }}
+          cancelText="back"
+        />
+        <CustomPopup
+          trigger={<button style={{ minWidth: "40%" }}>EDIT</button>}
+          showActionButtons={false}
+          closeOnDocumentClick={false}
         >
-          REMOVE
-        </button>
-        <button
-          onClick={() => navigate(`../edit-truck/${truck.id}`)}
-          style={{ minWidth: "40%" }}
-        >
-          EDIT
-        </button>
+          <EditTruck truck={truck} updateTruck={updateTruck} />
+        </CustomPopup>
+        <CustomPopup
+
+        // children={<EditTruck truck={truck} />}
+        />
       </div>
     </div>
   );

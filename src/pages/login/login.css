@@ -21,7 +21,6 @@
   flex-direction: column;
   gap: 0.5rem;
 }
-
 .login-input label {
   text-align: start;
 }

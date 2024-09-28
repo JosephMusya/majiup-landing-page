@@ -8,31 +8,41 @@ import { useUserContext } from "../../providers/UserProvider";
 function AddTrucks() {
   const navigate = useNavigate();
   const { authUser } = useUserContext();
+  const [loading, setLoading] = useState(false);
 
-  const [truckName, setTruckName] = useState("");
-  const [driverName, setDriverName] = useState("");
-  const [truckCapacity, setTruckCapacity] = useState(0);
-  const [town, setTown] = useState("");
-  const [vehicleReg, setVehicleReg] = useState("");
+  const [truckDetails, setTruckDetails] = useState({
+    truckName: "",
+    driverName: "",
+    truckCapacity: 0,
+    town: "",
+    vehicleReg: "",
+  });
+
+  // const [truckName, setTruckName] = useState("");
+  // const [driverName, setDriverName] = useState("");
+  // const [truckCapacity, setTruckCapacity] = useState(0);
+  // const [town, setTown] = useState("");
+  // const [vehicleReg, setVehicleReg] = useState("");
 
   const addTruck = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const { data, error } = await supabase
         .from("trucks")
         .insert([
           {
             owner: authUser.id,
-            name: truckName,
-            driver_name: driverName,
-            town: town,
-            truck_capacity: truckCapacity,
-            vehicle_number: vehicleReg,
+            name: truckDetails?.truckName,
+            driver_name: truckDetails?.driverName,
+            town: truckDetails?.town,
+            truck_capacity: truckDetails?.truckCapacity,
+            vehicle_number: truckDetails?.vehicleReg,
           },
         ])
         .select();
       if (data) {
-        toast.success(`Water truck ${truckName} added`);
+        toast.success(`Water truck ${truckDetails?.truckName} added`);
         // setTrucks((prev) => [...prev, ...data]);
         navigate(-1);
       } else if (error) {
@@ -40,6 +50,8 @@ function AddTrucks() {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,7 +61,13 @@ function AddTrucks() {
       <div style={{ maxWidth: "600px", marginTop: "1rem" }}>
         <form
           action=""
-          onSubmit={addTruck}
+          onSubmit={(e) => {
+            if (!loading) {
+              addTruck(e);
+            } else {
+              e.preventDefault();
+            }
+          }}
           style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
         >
           <div className="form-input">
@@ -57,7 +75,12 @@ function AddTrucks() {
             <input
               type="text"
               id="truck"
-              onChange={(text) => setTruckName(text.target.value)}
+              onChange={(text) =>
+                setTruckDetails((prev) => ({
+                  ...prev,
+                  truckName: text.target.value,
+                }))
+              }
               required
             />
           </div>
@@ -66,7 +89,12 @@ function AddTrucks() {
             <input
               type="text"
               id="driver"
-              onChange={(text) => setDriverName(text.target.value)}
+              onChange={(text) =>
+                setTruckDetails((prev) => ({
+                  ...prev,
+                  driverName: text.target.value,
+                }))
+              }
               required
               placeholder="Enter driver's name"
             />
@@ -77,7 +105,12 @@ function AddTrucks() {
               type="number"
               id="capacity"
               placeholder="example: 10,000 Liters"
-              onChange={(text) => setTruckCapacity(text.target.value)}
+              onChange={(text) =>
+                setTruckDetails((prev) => ({
+                  ...prev,
+                  truckCapacity: text.target.value,
+                }))
+              }
               required
             />
           </div>
@@ -87,7 +120,12 @@ function AddTrucks() {
               type="text"
               id="town"
               placeholder="What's the main area of operation"
-              onChange={(text) => setTown(text.target.value)}
+              onChange={(text) =>
+                setTruckDetails((prev) => ({
+                  ...prev,
+                  town: text.target.value,
+                }))
+              }
               required
             />
           </div>
@@ -98,7 +136,10 @@ function AddTrucks() {
               id="plate_number"
               placeholder="KXX 123A"
               onChange={(text) =>
-                setVehicleReg(text.target.value.toUpperCase())
+                setTruckDetails((prev) => ({
+                  ...prev,
+                  vehicleReg: text.target.value,
+                }))
               }
               required
               style={{ textTransform: "uppercase" }}
@@ -115,7 +156,7 @@ function AddTrucks() {
               Cancel
             </button>
             <button type="submit" className="custom-button">
-              Add Truck
+              {loading ? "Adding..." : "Add Truck"}
             </button>
           </div>
         </form>

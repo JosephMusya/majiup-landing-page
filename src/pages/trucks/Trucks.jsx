@@ -16,6 +16,21 @@ export default function Trucks() {
   const [loading, setLoading] = useState(true);
   const [trucks, setTrucks] = useState();
 
+  const updateTruck = (data) => {
+    setTrucks((prev) => {
+      const truckToUpdate = prev.find((truck) => truck.id === data.id);
+
+      if (truckToUpdate) {
+        return prev.map((truck) =>
+          truck.id === data.id ? { ...truck, ...data } : truck
+        );
+      }
+
+      // If the truck is not found, return the original list
+      return prev;
+    });
+  };
+
   const removeTruck = async (id) => {
     console;
     try {
@@ -76,6 +91,7 @@ export default function Trucks() {
                   truck={truck}
                   key={key}
                   navigate={navigate}
+                  updateTruck={updateTruck}
                   removeTruck={() => {
                     // alert("Are you sure you want to remove this vehicle")
                     removeTruck(truck.id);
