@@ -23,7 +23,7 @@ export default function Cancelled() {
         .from("refills")
         .select("*, truck(owner)", { count: "exact" })
         .eq("status", "Cancelled")
-        .not("truck", "is", null)
+        // .not("truck", "is", null)
         .eq(`${filter.key.toString()}`, profile?.id);
 
       if (data) {

@@ -12,9 +12,10 @@ import { useOrderContext } from "../../providers/OrderProvider";
 import supabase from "../../config/supabaseConfig";
 import { useEffect } from "react";
 import { useState } from "react";
+import { LuAlertTriangle } from "react-icons/lu";
 
 export default function MainViewPage() {
-  const { profile, loadingUser } = useUserContext();
+  const { profile, loadingUser, authUser } = useUserContext();
   const { ordersCount, loadingOrders } = useOrderContext();
   const [loadingLastOrder, setLoadingLastOrder] = useState(true);
   const [prevOrder, setPreviousOrder] = useState();
@@ -45,7 +46,7 @@ export default function MainViewPage() {
       }
 
       setLoadingLastOrder(true);
-      const { data, error } = await query.limit(1).single();
+      const { data, error } = await query.limit(1).maybeSingle();
 
       if (data) {
         setPreviousOrder(data);
@@ -66,7 +67,7 @@ export default function MainViewPage() {
   return loadingUser ? (
     <p>Loading user</p>
   ) : profile && !loadingUser ? (
-    <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       {profile?.user_type === "client" && (
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <h1 className="orders-heading">Create water refill order </h1>
@@ -75,6 +76,31 @@ export default function MainViewPage() {
               <button>Order Water</button>
             </Link>
           </div>
+        </div>
+      )}
+      {!authUser?.user_metadata.phone_verified && (
+        <div
+          className="flex-row"
+          style={{
+            alignItems: "center",
+            gap: "1rem",
+            cursor: "pointer",
+            width: "fit-content",
+            backgroundColor: "#f4f4f4",
+            padding: "0.5rem",
+            borderRadius: "0.5rem",
+          }}
+          onClick={() => navigate("./profile/1")}
+        >
+          <div
+            className="flex-row"
+            style={{ justifyContent: "center", alignItems: "center" }}
+          >
+            <LuAlertTriangle size={22} color="orange" />
+          </div>
+          <article style={{ color: "orange" }}>
+            Kindly verify your phone number on your profile
+          </article>
         </div>
       )}
       <div className="dashboard-cards">

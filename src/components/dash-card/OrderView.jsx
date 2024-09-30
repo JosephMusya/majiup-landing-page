@@ -57,7 +57,9 @@ export default function OrderView({ onClick, order, profile }) {
                 </p>
               </div>
             ) : (
-              <p>Finding best water trucker for you ...</p>
+              profile.status === "In Progress" && (
+                <p>Finding best water trucker for you ...</p>
+              )
             )}
           </div>
         )}

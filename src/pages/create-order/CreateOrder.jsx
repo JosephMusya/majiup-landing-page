@@ -4,16 +4,27 @@ import supabase from "../../config/supabaseConfig";
 import { useUserContext } from "../../providers/UserProvider";
 import toast from "react-hot-toast";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function CreateOrder() {
   const navigate = useNavigate();
+  const routerLocation = useLocation();
+
+  const orderDetails = routerLocation?.state || {};
 
   const { profile } = useUserContext();
 
-  const [amountLiters, setAmountLiters] = useState(0);
-  const [comment, setComment] = useState();
-  const [town, setTown] = useState("");
-  const [waterType, setWaterType] = useState("Raw");
+  const [order, setOrder] = useState({
+    amountLiters: orderDetails?.amount_liters ?? 0,
+    comment: orderDetails?.comment ?? "",
+    town: orderDetails?.town ?? "",
+    waterType: orderDetails?.waterType ?? "Raw",
+  });
+
+  // const [amountLiters, setAmountLiters] = useState(0);
+  // const [comment, setComment] = useState();
+  // const [town, setTown] = useState("");
+  // const [waterType, setWaterType] = useState("Raw");
 
   const [submitting, setSubmitting] = useState(false);
 
@@ -94,11 +105,11 @@ export default function CreateOrder() {
         .insert([
           {
             owner: profile.id,
-            amount_liters: amountLiters,
+            amount_liters: order?.amountLiters,
             status: "In Progress",
-            comment: comment,
-            water_type: waterType,
-            town: town,
+            comment: order?.comment,
+            water_type: order?.waterType,
+            town: order?.town,
             location: {}, // json cordinates
             confirmed: false,
           },
@@ -125,7 +136,13 @@ export default function CreateOrder() {
       <h1 className="orders-heading">Create Water Truck Order</h1>
       <div style={{ maxWidth: "600px", marginTop: "1rem" }}>
         <form
-          action=""
+          onSubmit={(e) => {
+            if (!submitting) {
+              createOrder(e);
+            } else {
+              e.preventDefault();
+            }
+          }}
           style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
         >
           <div className="form-input">
@@ -135,8 +152,12 @@ export default function CreateOrder() {
               id="quantity"
               placeholder="How much quantity do you need"
               onChange={(text) => {
-                setAmountLiters(text.target.value);
+                setOrder((prev) => ({
+                  ...prev,
+                  amountLiters: text.target.value,
+                }));
               }}
+              defaultValue={order?.amountLiters}
               required
             />
           </div>
@@ -145,8 +166,12 @@ export default function CreateOrder() {
             <select
               name="water-type"
               id="water-type"
+              defaultValue={order?.waterType}
               onChange={(text) => {
-                setWaterType(text.value);
+                setOrder((prev) => ({
+                  ...prev,
+                  waterType: text.target.value,
+                }));
               }}
             >
               <option value="Raw" defaultValue>
@@ -160,8 +185,12 @@ export default function CreateOrder() {
             <input
               type="text"
               id="Comment"
+              defaultValue={order?.comment}
               onChange={(text) => {
-                setComment(text.target.value);
+                setOrder((prev) => ({
+                  ...prev,
+                  comment: text.target.value,
+                }));
               }}
             />
           </div>
@@ -171,31 +200,28 @@ export default function CreateOrder() {
               type="text"
               id="town"
               placeholder="We need to know your location"
+              defaultValue={order?.town}
               onChange={(text) => {
-                setTown(text.target.value);
+                setOrder((prev) => ({
+                  ...prev,
+                  town: text.target.value,
+                }));
               }}
               required
             />
           </div>
-
           <div style={{ display: "flex", gap: "1rem" }}>
             <button
               className="custom-button"
               style={{ backgroundColor: "gray" }}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 navigate(-1);
               }}
             >
               Cancel
             </button>
-            <button
-              onClick={(e) => {
-                if (!submitting) {
-                  createOrder(e);
-                }
-              }}
-              className="custom-button"
-            >
+            <button type="submit" className="custom-button">
               {submitting ? "Requesting" : "Submit"}
             </button>
           </div>

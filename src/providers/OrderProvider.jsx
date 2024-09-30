@@ -91,10 +91,7 @@ export const OrderProvider = (props) => {
           (total, row) => total + (row.amount_liters || 0), // Handle possible null or undefined values
           0 // Initial value for total
         );
-      } else {
-        console.log("No records found");
       }
-
       // console.log(totalLitersOrders);
       // const totalLiters = totalLitersOrders.reduce(
       //   (total, row) => total + row.amount_liters

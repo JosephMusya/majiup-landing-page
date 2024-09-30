@@ -16,8 +16,10 @@ import { useEffect } from "react";
 export default function Profile() {
   const { authUser, profile, loadingUser, updateProfile } = useUserContext();
   const { ordersCount, loadingOrders } = useOrderContext();
+  const [otp, setOtp] = useState();
 
   const [submiting, setSubmiting] = useState(false);
+  const [sendingOtp, setSendingOtp] = useState(false);
 
   const [editProfile, setEditProfile] = useState({
     name: "",
@@ -54,6 +56,22 @@ export default function Profile() {
         .select("name,phone,town")
         .single();
 
+      if (editProfile?.phone !== profile?.phone) {
+        try {
+          const { _, error: updatePhoneErr } = await supabase.auth.updateUser({
+            phone: editProfile.phone,
+          });
+          if (updatePhoneErr) {
+            throw new Error(updatePhoneErr.message);
+          }
+        } catch (error) {
+          console.error(error.message);
+          toast.error("Phone number not updated");
+        }
+      }
+
+      console.log(data);
+
       if (data) {
         updateProfile(data);
         toast.success("Your profile has been updated!");
@@ -68,6 +86,57 @@ export default function Profile() {
     }
   };
 
+  const sendOtp = async () => {
+    try {
+      setSendingOtp(true);
+      console.log(profile?.phone);
+      const { data, error } = await supabase.auth.signInWithOtp({
+        phone: profile?.phone,
+      });
+
+      if (data.user || data.session) {
+        toast.success(`OTP has been sent to ${profile?.phone}`);
+      } else if (error) {
+        throw new Error(error.message);
+      }
+    } catch (error) {
+      toast.error(`Failed to send OTP message`);
+      toast.error(error.message);
+    } finally {
+      setSendingOtp(false);
+    }
+  };
+
+  const submitOTP = async () => {
+    try {
+      const { data, error } = await supabase.auth.verifyOtp({
+        phone: profile?.phone,
+        token: otp,
+        type: "sms",
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      } else if (data) {
+        //update user
+        const { data, error } = await supabase.auth.updateUser({
+          data: {
+            phone_verified: true,
+          },
+          // phone: phone
+        });
+
+        if (error) {
+          throw new Error(error.message);
+        } else if (data) {
+          toast.success("Congratulations! You are now verified!");
+        }
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   useEffect(() => {
     profile &&
       setEditProfile((prev) => ({
@@ -77,7 +146,6 @@ export default function Profile() {
         town: profile?.town,
       }));
   }, [profile]);
-  // console.log();
 
   return loadingUser ? (
     <p>Loading...</p>
@@ -101,13 +169,15 @@ export default function Profile() {
             >
               {profile?.name}
             </h1>
-            <span
-              style={{
-                alignSelf: "flex-start",
-              }}
-            >
-              <MdVerified size={24} color="#0072bb" />
-            </span>
+            {authUser.user_metadata.phone_verified && (
+              <span
+                style={{
+                  alignSelf: "flex-start",
+                }}
+              >
+                <MdVerified size={24} color="#0072bb" />
+              </span>
+            )}
           </div>
 
           <article>{timeAgo(profile?.created_at)} on Majiup</article>
@@ -229,29 +299,34 @@ export default function Profile() {
             marginTop: "2rem",
           }}
         >
-          <p>We need to verify your phone number</p>
+          <p style={{ color: "orange" }}>We need to verify your phone number</p>
           <CustomPopup
             trigger={
               <button
                 style={{
-                  backgroundColor: "#f6f6f6",
+                  // backgroundColor: "#f6f6f6",
                   backgroundColor: " #0072bb",
+                  // backgroundColor: "orange",
                   color: "#fff",
                   borderRadius: "2rem",
                   padding: "0.8rem 1rem",
                 }}
               >
-                Verify Now
+                {"Verify Now"}
               </button>
             }
+            onOpen={sendOtp}
+            onConfirm={otp?.length === 6 && submitOTP}
             title="Submit OTP"
             body={`An OTP was sent to +${profile?.phone}`}
-            confirmText="submit"
+            confirmText={sendingOtp ? "Please wait..." : "submit"}
+            closeOnDocumentClick={false}
             children={
               <div className="form-input" style={{ marginBottom: "1rem" }}>
                 <input
                   type="text"
                   placeholder="Enter OTP"
+                  onChange={(text) => setOtp(text.target.value)}
                   style={{ fontSize: "1.5rem", letterSpacing: "2px" }}
                 />
               </div>
@@ -282,7 +357,7 @@ export default function Profile() {
         )}
         <div style={profileElementStyle}>
           <article style={profileTitle}>Phone</article>
-          <article>+{profile?.phone}</article>
+          <article>+{authUser?.phone}</article>
         </div>
         <div style={profileElementStyle}>
           <article style={profileTitle}>Email</article>

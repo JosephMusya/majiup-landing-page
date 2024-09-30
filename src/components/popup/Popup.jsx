@@ -15,10 +15,12 @@ export default function CustomPopup({
   height,
   closeOnDocumentClick = true,
   showActionButtons = true,
+  onOpen,
 }) {
   return (
     <Popup
       trigger={trigger}
+      onOpen={onOpen}
       modal
       nested
       closeOnDocumentClick={closeOnDocumentClick}

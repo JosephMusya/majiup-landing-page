@@ -19,9 +19,12 @@ import { timeAgo } from "../../utils/helpers/timeAgo";
 import { useUserContext } from "../../providers/UserProvider";
 import DriverCard from "../../components/card-drivers/DriverCard";
 import CustomPopup from "../../components/popup/Popup";
+import { useNavigate } from "react-router-dom";
 
 export default function OrderViewPage() {
   const { profile } = useUserContext();
+  const navigate = useNavigate();
+
   const iSize = 28;
   const { id } = useParams();
 
@@ -142,7 +145,8 @@ export default function OrderViewPage() {
               <DriverCard truck={order?.truck} />
             </div>
           ) : (
-            profile?.user_type === "client" && (
+            profile?.user_type === "client" &&
+            profile?.status === "In Progress" && (
               <p>Finding the best water trucker for you ...</p>
             )
           )}
@@ -207,6 +211,21 @@ export default function OrderViewPage() {
                 )}
               </>
             )}
+            {(order?.status === "Completed" || order?.status === "Cancelled") &&
+              profile?.user_type === "client" && (
+                <button
+                  style={{
+                    minWidth: "15rem",
+                  }}
+                  onClick={() =>
+                    order
+                      ? navigate("../create-order", { state: order })
+                      : toast.error("Failed to load this order")
+                  }
+                >
+                  Reorder
+                </button>
+              )}
           </div>
         </div>
       ) : (

@@ -62,6 +62,13 @@ function EditTruck({ truck, close, updateTruck }) {
       {
         <div style={{ maxWidth: "600px", marginTop: "1rem" }}>
           <form
+            onSubmit={(e) => {
+              if (!updating) {
+                submitEdits(e);
+              } else {
+                e.preventDefault();
+              }
+            }}
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
           >
             <div className="form-input">
@@ -152,15 +159,7 @@ function EditTruck({ truck, close, updateTruck }) {
               >
                 Cancel
               </button>
-              <button
-                type="submit"
-                className="custom-button"
-                onClick={(e) => {
-                  if (!updating) {
-                    submitEdits(e);
-                  }
-                }}
-              >
+              <button type="submit" className="custom-button">
                 {updating ? "Saving..." : "Save Changes"}
               </button>
             </div>
