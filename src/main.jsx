@@ -11,7 +11,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <UserProvider>
       <OrderProvider>
         <App />
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            duration: 3500,
+          }}
+        />
       </OrderProvider>
     </UserProvider>
   </HashRouter>

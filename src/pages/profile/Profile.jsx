@@ -211,7 +211,11 @@ export default function Profile() {
             closeOnDocumentClick={false}
             title="Edit Profile"
             confirmText={submiting ? "submitting..." : "submit"}
-            onConfirm={!submiting && submitProfile}
+            onConfirm={(e) => {
+              if (!submiting) {
+                submitProfile();
+              }
+            }}
             children={
               <div style={{ paddingBottom: "1rem" }}>
                 <form
@@ -238,6 +242,7 @@ export default function Profile() {
                     <input
                       id="phone"
                       type="text"
+                      readOnly
                       defaultValue={profile?.phone}
                       onChange={(text) =>
                         setEditProfile((prev) => ({
@@ -317,6 +322,11 @@ export default function Profile() {
             }
             onOpen={sendOtp}
             onConfirm={otp?.length === 6 && submitOTP}
+            confirmStyle={{
+              backgroundColor: otp?.length < 6 && "#f4f4f4",
+              color: "#000",
+              cursor: otp?.length < 6 && "not-allowed",
+            }}
             title="Submit OTP"
             body={`An OTP was sent to +${profile?.phone}`}
             confirmText={sendingOtp ? "Please wait..." : "submit"}

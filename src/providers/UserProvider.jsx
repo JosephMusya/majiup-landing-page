@@ -12,15 +12,31 @@ export const UserProvider = (props) => {
   const [loadingUser, setLoadingUser] = useState(true);
 
   const authChange = () => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_IN") {
-        setAuthUser(session.user);
-      } else if (event === "SIGNED_OUT") {
-        setAuthUser(null);
-      } else if (event === "USER_UPDATED") {
-        setAuthUser(session.user);
+    console.log("Listening for auth changes...");
+
+    // Subscribe to authentication state changes and capture the listener
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === "SIGNED_IN") {
+          setAuthUser(session?.user);
+          // console.log("User signed in:", session?.user);
+        } else if (event === "SIGNED_OUT") {
+          setAuthUser(null);
+          // console.log("User signed out");
+        } else if (event === "USER_UPDATED") {
+          setAuthUser(session?.user);
+          // console.log("User updated:", session?.user);
+        }
       }
-    });
+    );
+
+    // Return a cleanup function to unsubscribe from the listener
+    return () => {
+      if (authListener) {
+        authListener.unsubscribe();
+        console.log("Unsubscribed from auth changes");
+      }
+    };
   };
 
   const getUserProfile = async (authUser) => {
@@ -70,13 +86,13 @@ export const UserProvider = (props) => {
 
   useEffect(() => {
     authChange();
-
-    return () => {};
   }, []);
 
   useEffect(() => {
-    if (authUser && !profile) {
+    if (authUser) {
       getUserData();
+    } else {
+      setProfile();
     }
   }, [authUser]);
 

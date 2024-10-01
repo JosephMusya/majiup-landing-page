@@ -125,7 +125,8 @@ export default function CreateOrder() {
         throw new Error(error.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      // console.log(error);
+      toast.error("Error occured while creating your order!");
     } finally {
       setSubmitting(false);
     }

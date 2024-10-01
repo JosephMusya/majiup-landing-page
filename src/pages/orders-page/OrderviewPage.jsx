@@ -146,7 +146,7 @@ export default function OrderViewPage() {
             </div>
           ) : (
             profile?.user_type === "client" &&
-            profile?.status === "In Progress" && (
+            order?.status === "In Progress" && (
               <p>Finding the best water trucker for you ...</p>
             )
           )}
