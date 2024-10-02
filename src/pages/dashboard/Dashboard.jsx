@@ -1,6 +1,6 @@
 import React from "react";
 import "./dashboard.css";
-import SideNav from "../../components/side-nav/SideNav";
+// import SideNav from "../../components/side-nav/SideNav";
 import OrdersPage from "../orders-page/Cancelled";
 import { Routes, Route } from "react-router-dom";
 import MainViewPage from "../main-view-page/MainViewPage";
@@ -35,7 +35,7 @@ export default function Dashboard() {
           left: 0,
         }}
       >
-        <SideNav />
+        {/* <SideNav /> */}
       </div>
       <div className="routes" style={{ width: "inherit", padding: "8px" }}>
         <Routes>

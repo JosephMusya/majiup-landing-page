@@ -90,11 +90,18 @@ export const UserProvider = (props) => {
 
   useEffect(() => {
     if (authUser) {
+      console.log;
       getUserData();
     } else {
       setProfile();
     }
   }, [authUser]);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position.coords);
+    });
+  }, []);
 
   return (
     <UserContext.Provider

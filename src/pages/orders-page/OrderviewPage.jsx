@@ -75,6 +75,7 @@ export default function OrderViewPage() {
         .single();
 
       if (data) {
+        console.log(data);
         setOrder(data);
       } else if (error) {
         throw new Error(error.message);
@@ -108,10 +109,13 @@ export default function OrderViewPage() {
             <h1>{order?.owner.name}</h1>
             <small>{timeAgo(order?.created_at)}</small>
           </div>
-          <div className="flex-row">
-            <FaRegClock size={iSize} color="#0072bb" />
-            <h2>Delivery in {1} hour</h2>
-          </div>
+          {order?.truck && (
+            <div className="flex-row">
+              <FaRegClock size={iSize} color="#0072bb" />
+              <h2>Delivery in {1} hour</h2>
+            </div>
+          )}
+
           <div className="loc-card">
             <MdLocationOn color="red" size={30} />
             <h2>{order?.town}</h2>
